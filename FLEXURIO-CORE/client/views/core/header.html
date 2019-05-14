@@ -1,0 +1,71 @@
+<template name="header">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    {{#if isDisconnect}}
+        <div class="jumbotron" style="z-index:10000;position:fixed;top:60px;right:80px;background-color:red;color:white;opacity:0.7;height:40px;">
+            <h6 style="position:relative;top:-15px;">&nbsp;Warning, Failed to connect to host server . . . &nbsp;</h6>
+        </div>
+    {{/if}}
+    <nav class="nav-panel blue lighten-1">
+            <div class="nav-wrapper">
+                <div class="nav-header" style="margin-top: 6px;">
+                        <button type="button" class="create btn btn-default btn-fab btn-raised"
+                        style="position: fixed; top: 23px;right: 20px;z-index: 4002;"
+                        data-toggle="sidebar" data-target=".sidebar-right">
+                    <img class="img-circle btn-raised"
+                         style="height: 100%; width: 100%;position: relative;top:0px;left: 0px;z-index: 4000;overflow:hidden;" src="{{lokasiFotoKaryawan}}" onerror="this.onerror=null;this.src='/images/avatar.svg';">
+                </button>     
+              <a href="#" class="brand-logo">{{namaApp}}</a>
+              <div class="container">
+              <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="sass.html">Member</a></li>
+                <li><a href="badges.html">Team</a></li>
+                <li><a href="collapsible.html">Schedule</a></li>
+              </ul>
+            </div>
+            </div>
+            </div>
+          </nav>
+    <!-- <div class="navbar navbar-fixed-top shadow-z-2 shadow-z-3"
+         style="height: 50px;background-color: {{sHeaderBackground}};z-index: 9000">
+        <div class="navbar-header" style="position:absolute;font-size:xx-large;left: -5px;top: -2px;">
+            <button type="button" class="navbar-toggle toggle-left {{showIcon}}" data-toggle="sidebar" data-target=".sidebar-left">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+            </button>
+        </div>
+        <a href="#" class="gohome" style="font-family: 'Raleway-Thin', sans-serif;font-size: x-large;position: relative;left: 30px;top:10px;color: white;text-decoration: none;">{{namaApp}}</a>
+
+        <button type="button" class="create btn btn-default btn-fab btn-raised"
+                style="position: fixed; top: 23px;right: 20px;z-index: 4002;"
+                data-toggle="sidebar" data-target=".sidebar-right">
+            <img class="img-circle btn-raised"
+                 style="height: 100%; width: 100%;position: relative;top:0px;left: 0px;z-index: 4000;overflow:hidden;" src="{{lokasiFotoKaryawan}}" onerror="this.onerror=null;this.src='/images/avatar.svg';">
+        </button>
+    </div> -->
+</template>
+
+<template name="headerListview">
+    <div class="panel-heading">
+        <div class="form-search">
+            <p class="mdi-action-list namaHeader">{{namaHeader}}</p>
+        </div>
+    </div>
+</template>
+
+<template name="formDeleting">
+    <div class="modal_formDeleting modal" id="modal_formDeleting" name="modal_formDeleting">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class='form-group label-floating has-info col-md-12'>
+                        <h3>Are you sure delete {{dataDelete}} ?</h3>
+                    </div>
+                    <div class="modal-footer">
+                        <a class='deleteDataOK btn' style='background-color:red;color:white;'>DELETE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

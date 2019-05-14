@@ -1,0 +1,116 @@
+
+    <!-- Generated from flexurio at Sen Mei 13 09:11:27 WIB 2019 By muhamad at Linux muhamad-X455YA 4.15.0-47-generic #50-Ubuntu SMP Wed Mar 13 10:44:52 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux -->
+
+    <template name='team'>
+       <div class='container-fluid app'>  
+         <body>
+            
+         </body>
+         {{>utama}}
+         {{>menuSearch}}
+         {{#if isActionADD}}
+            {{>menuAdd}}
+         {{/if}}
+         <div class="jumbtronteam valign-wrapper">
+            <div class="row">
+               <div class="col m12 center-align">
+                  <h1 class="grey-text text-lighten">Find Your Group</h1>
+               </div>
+            </div>
+         </div>
+        <section class="group">
+           <div class="row">
+               {{#each teams}}
+              <div class="col s12 m3">
+                 <div class="card hoverable card-join">
+                    <div class="card-image">
+                       <img src="/images/qa.jpg" alt="">   <!--{{image}} -->
+                       <span class="card-title orange-text">{{nama_kelompok}}</span>
+                    </div>
+                    <div class="btn-anggota content center-align waves-effect waves-block waves-light haverable orange darken-2">
+                       <h5 class="grey-text text-lighten-5">Join Group</h5>
+                    </div>
+                    <div class="card-action">
+                    {{#if isActionEDIT }}
+                    <a class="editData" style="color:orange;" data-toggle="tooltip" title="EDIT DATA">EDIT</a> &nbsp;&nbsp;&nbsp;
+                    {{/if}}
+                    {{#if isActionDELETE}}
+                    <a class="deleteData" style="color:red;"  data-toggle="tooltip" title="DELETE DATA">DELETE</a>
+                    {{/if}}
+                 </div>
+              </div>
+           </div>
+                        <!--edit-->
+                      {{#if isEditing}}
+                      {{>blockModals}}
+                      <div class='container animasiAtas' style='position:fixed;top:10%;left:10%;width:80%;z-index:10001;'>
+                      <div class='col-md-12' style='height:auto;max-height:{{sTinggiPopUp}}px;overflow-y:scroll;'>
+                         
+
+                     <div class='form-group label-floating has-info col-md-6'>
+                           <label for='nama_kelompokEditTEAM' class='control-label'>NAMA_KELOMPOK TEAM</label>
+                           <input name='nama_kelompokEditTEAM' id='nama_kelompokEditTEAM' type='text' class='form-control' style='font-size:larger;' value='{{nama_kelompok}}'>
+                     </div>
+
+                     <div class='form-group label-floating has-info col-md-6'>
+                           <label for='imageEditTEAM' class='control-label'>IMAGE TEAM</label>
+                           <input name='imageEditTEAM' id='imageEditTEAM' type='text' class='form-control' style='font-size:larger;' value='{{image}}'>
+                     </div> 
+
+                     </div>
+
+                     <div class='pull-right'>
+                     <a class='saveEDIT btn btn-primary' style='background-color:green;color:white;'>SAVE</a>
+                     </div>
+                     </div>
+                     {{/if}}
+                     {{/each}}
+                     <!--create-->
+                     <!-- {{>menuLoadMore}} -->
+                     {{#if isCreating}}
+                     {{>blockModals}}
+                     <div class='container animasiAtas' style='position:fixed;top:10%;left:10%;width:80%;z-index:10001;'>
+                     <div class='col-md-12' style='height:auto;max-height:{{sTinggiPopUp}}px;overflow-y:scroll;'>
+                        
+        
+                  <div class='form-group label-floating has-info col-md-6'>
+                        <label for='nama_kelompokTEAM' class='control-label'>NAMA_KELOMPOK TEAM</label>
+                        <input name='nama_kelompokTEAM' id='nama_kelompokTEAM' type='text' class='form-control' style='font-size:larger;'>
+                  </div>
+      
+                 
+        
+                 <div class='form-group label-floating has-info col-md-6'>
+                     <label for='imageTEAM' class='control-label'>IMAGE TEAM</label>
+                     <input name='imageTEAM' id='imageTEAM' type='text' class='form-control' style='font-size:larger;'>
+                 </div>
+        
+                  </div> 
+
+                  <div class='pull-right'>
+                     <a class='save btn btn-primary' style='background-color:green;color:white;'>SAVE</a>
+                  </div>
+                   </div>
+                  {{/if}}
+        
+                  {{#if isDeleting}}
+                     {{>formDeleting}}
+                  {{/if}}
+           </div>
+        </section>
+
+             
+
+                
+                  
+                   
+                   
+             
+            
+          
+
+         
+       </div>
+    </template>
+
+    

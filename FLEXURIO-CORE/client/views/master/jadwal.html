@@ -1,0 +1,168 @@
+
+    <!-- Generated from flexurio at Sen Mei 13 08:29:13 WIB 2019 By muhamad at Linux muhamad-X455YA 4.15.0-47-generic #50-Ubuntu SMP Wed Mar 13 10:44:52 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux -->
+
+    <template name='jadwal'>
+       <div class='container-fluid app'>
+          {{>utama}}
+          {{>menuSearch}}
+          {{#if isActionADD}}
+             {{>menuAdd}}
+          {{/if}}
+
+          <div class='row main {{isLockMenu}} animasiAtas'>
+
+             <!-- HEADER LISTVIEW -->
+             <div class='list-group panel panel-default headerApp'>
+                {{>headerListview}}
+
+                {{#each jadwals}}
+                   <div class='list-group-item'>
+                      <div class='row-content'>
+                         <BR>
+                         <p>
+                          {{topikmeeting}} -  {{image}} -  {{tgl}} -  {{tempat}} -  {{latitude}} -  {{longtitude}} -  {{status}} - 
+                         </p>
+
+                            <div class='least-content' style='top:20px;'>
+                               {{>actionListview}}
+                            </div>
+                      </div>
+                   </div>
+
+                    {{>flxcomments isCommentOpen=false _id=_id comments=comments}}
+
+                   {{#if isEditing}}
+                      {{>blockModals}}
+                      <div class='container animasiAtas' style='position:fixed;top:10%;left:10%;width:80%;z-index:10001;'>
+                         <div class='col-md-12' style='height:auto;max-height:{{sTinggiPopUp}}px;overflow-y:scroll;'>
+                         
+
+         <div class='form-group label-floating has-info col-md-6'>
+         <label for='topikmeetingEditJADWAL' class='control-label'>TOPIKMEETING JADWAL</label>
+         <input name='topikmeetingEditJADWAL' id='topikmeetingEditJADWAL' type='text' class='form-control' style='font-size:larger;' value='{{topikmeeting}}'>
+         </div>
+
+         
+
+         <div class='form-group label-floating has-info col-md-6'>
+         <label for='imageEditJADWAL' class='control-label'>IMAGE JADWAL</label>
+         <input name='imageEditJADWAL' id='imageEditJADWAL' type='text' class='form-control' style='font-size:larger;' value='{{image}}'>
+         </div>
+
+         
+
+         <div class='form-group label-floating has-info col-md-6'>
+         <label for='tglEditJADWAL' class='control-label'>TGL JADWAL</label>
+         <input name='tglEditJADWAL' id='tglEditJADWAL' type='text' class='form-control' style='font-size:larger;' value='{{tgl}}'>
+         </div>
+
+         
+
+         <div class='form-group label-floating has-info col-md-6'>
+         <label for='tempatEditJADWAL' class='control-label'>TEMPAT JADWAL</label>
+         <input name='tempatEditJADWAL' id='tempatEditJADWAL' type='text' class='form-control' style='font-size:larger;' value='{{tempat}}'>
+         </div>
+
+         
+
+         <div class='form-group label-floating has-info col-md-6'>
+         <label for='latitudeEditJADWAL' class='control-label'>LATITUDE JADWAL</label>
+         <input name='latitudeEditJADWAL' id='latitudeEditJADWAL' type='text' class='form-control' style='font-size:larger;' value='{{latitude}}'>
+         </div>
+
+         
+
+         <div class='form-group label-floating has-info col-md-6'>
+         <label for='longtitudeEditJADWAL' class='control-label'>LONGTITUDE JADWAL</label>
+         <input name='longtitudeEditJADWAL' id='longtitudeEditJADWAL' type='text' class='form-control' style='font-size:larger;' value='{{longtitude}}'>
+         </div>
+
+         
+
+         <div class='form-group label-floating has-info col-md-6'>
+         <label for='statusEditJADWAL' class='control-label'>STATUS JADWAL</label>
+         <input name='statusEditJADWAL' id='statusEditJADWAL' type='text' class='form-control' style='font-size:larger;' value='{{status}}'>
+         </div>
+
+         
+                         </div>
+
+                         <div class='pull-right'>
+                         <a class='saveEDIT btn btn-primary' style='background-color:green;color:white;'>SAVE</a>
+                         </div>
+                      </div>
+                   {{/if}}
+                {{/each}}
+             </div>
+             {{>menuLoadMore}}
+          </div>
+
+          {{#if isCreating}}
+             {{>blockModals}}
+             <div class='container animasiAtas' style='position:fixed;top:10%;left:10%;width:80%;z-index:10001;'>
+                <div class='col-md-12' style='height:auto;max-height:{{sTinggiPopUp}}px;overflow-y:scroll;'>
+                
+
+         <div class='form-group label-floating has-info col-md-6'>
+         <label for='topikmeetingJADWAL' class='control-label'>TOPIKMEETING JADWAL</label>
+         <input name='topikmeetingJADWAL' id='topikmeetingJADWAL' type='text' class='form-control' style='font-size:larger;'>
+         </div>
+
+         
+
+         <div class='form-group label-floating has-info col-md-6'>
+         <label for='imageJADWAL' class='control-label'>IMAGE JADWAL</label>
+         <input name='imageJADWAL' id='imageJADWAL' type='text' class='form-control' style='font-size:larger;'>
+         </div>
+
+         
+
+         <div class='form-group label-floating has-info col-md-6'>
+         <label for='tglJADWAL' class='control-label'>TGL JADWAL</label>
+         <input name='tglJADWAL' id='tglJADWAL' type='text' class='form-control' style='font-size:larger;'>
+         </div>
+
+         
+
+         <div class='form-group label-floating has-info col-md-6'>
+         <label for='tempatJADWAL' class='control-label'>TEMPAT JADWAL</label>
+         <input name='tempatJADWAL' id='tempatJADWAL' type='text' class='form-control' style='font-size:larger;'>
+         </div>
+
+         
+
+         <div class='form-group label-floating has-info col-md-6'>
+         <label for='latitudeJADWAL' class='control-label'>LATITUDE JADWAL</label>
+         <input name='latitudeJADWAL' id='latitudeJADWAL' type='text' class='form-control' style='font-size:larger;'>
+         </div>
+
+         
+
+         <div class='form-group label-floating has-info col-md-6'>
+         <label for='longtitudeJADWAL' class='control-label'>LONGTITUDE JADWAL</label>
+         <input name='longtitudeJADWAL' id='longtitudeJADWAL' type='text' class='form-control' style='font-size:larger;'>
+         </div>
+
+         
+
+         <div class='form-group label-floating has-info col-md-6'>
+         <label for='statusJADWAL' class='control-label'>STATUS JADWAL</label>
+         <input name='statusJADWAL' id='statusJADWAL' type='text' class='form-control' style='font-size:larger;'>
+         </div>
+
+         
+                </div>
+
+                <div class='pull-right'>
+                   <a class='save btn btn-primary' style='background-color:green;color:white;'>SAVE</a>
+                </div>
+             </div>
+          {{/if}}
+
+          {{#if isDeleting}}
+             {{>formDeleting}}
+          {{/if}}
+       </div>
+    </template>
+
+    
