@@ -151,7 +151,14 @@
          'submit form.form-comments': function (e, tpl) {
             e.preventDefault();
             flxcomments(e,tpl,TEAM);
-        }
+
+         },
+         'click div.btn-anggota': function (e, tpl){
+            e.preventDefault();
+            Session.set('pilih',this._id);
+            Router.go('anggota');
+         }
+        
 
       });
 

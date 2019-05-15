@@ -21,3 +21,4 @@ ANGGOTA = new Mongo.Collection('anggota');
 KELOMPOK = new Mongo.Collection('kelompok'); 
 JADWAL = new Mongo.Collection('jadwal'); 
 TEAM = new Mongo.Collection('team'); 
+ 

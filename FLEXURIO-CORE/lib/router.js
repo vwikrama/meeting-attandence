@@ -87,6 +87,7 @@ Router.route('/wo', function () {
     Router.route('/anggota', function () {
         Session.set('sURLMenu', 'anggota');
        this.render('anggota');
+       Session.get('pilihanggota');
     });
     
 
@@ -94,16 +95,15 @@ Router.route('/wo', function () {
         Session.set('sURLMenu', 'kelompok');
        this.render('kelompok');
     });
+
+    Router.route('/team', function () {
+        Session.set('sURLMenu', 'team');
+       this.render('team');
+    });
     
 
     Router.route('/jadwal', function () {
         Session.set('sURLMenu', 'jadwal');
        this.render('jadwal');
-    });
-    
-
-    Router.route('/team', function () {
-        Session.set('sURLMenu', 'team');
-       this.render('team');
     });
     

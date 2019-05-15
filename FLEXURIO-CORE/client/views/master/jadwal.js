@@ -1,6 +1,6 @@
 
           /**
-          * Generated from flexurio at Sen Mei 13 08:29:13 WIB 2019
+          * Generated from flexurio at Sel Mei 14 13:34:56 WIB 2019
           * By muhamad at Linux muhamad-X455YA 4.15.0-47-generic #50-Ubuntu SMP Wed Mar 13 10:44:52 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
           */
 
@@ -20,7 +20,8 @@
 
          this.autorun(function () {
                 subscribtion('jadwal', Session.get('oFILTERS'), Session.get('oOPTIONS'), Session.get('limit'));
-         });
+                subscribtion('team',{aktifYN: 1},{},0);
+               });
        };
 
         Template.jadwal.onRendered(function () {
@@ -28,6 +29,11 @@
         });
 
         Template.jadwal.helpers({
+
+            teamsa: function(){
+               return TEAM.find().fetch();
+            },
+
             isLockMenu: function () {
                 return isLockMenu();
             },
@@ -78,14 +84,16 @@
          {topikmeeting: { $regex : new RegExp(textSearch, 'i') }},
          
          {image: { $regex : new RegExp(textSearch, 'i') }},
-         
-         {tgl: { $regex : new RegExp(textSearch, 'i') }},
+
+         {team: { $regex : new RegExp(textSearch, 'i') }},
          
          {tempat: { $regex : new RegExp(textSearch, 'i') }},
          
+         {longtitude: { $regex : new RegExp(textSearch, 'i') }},
+         
          {latitude: { $regex : new RegExp(textSearch, 'i') }},
          
-         {longtitude: { $regex : new RegExp(textSearch, 'i') }},
+         {waktu: { $regex : new RegExp(textSearch, 'i') }},
          
          {status: { $regex : new RegExp(textSearch, 'i') }},
          
@@ -161,6 +169,7 @@
          'submit form.form-comments': function (e, tpl) {
             e.preventDefault();
             flxcomments(e,tpl,JADWAL);
+            
         }
 
       });
@@ -170,21 +179,23 @@
 
          
          let topikmeetingJADWAL = tpl.$('input[name="topikmeetingJADWAL"]').val();
+
+         let image = tpl.$('input[name="image"]').val();
          
-         let imageJADWAL = tpl.$('input[name="imageJADWAL"]').val();
-         
-         let tglJADWAL = tpl.$('input[name="tglJADWAL"]').val();
+         let teamJADWAL = tpl.$('select[name="teamJADWAL"]').val();
          
          let tempatJADWAL = tpl.$('input[name="tempatJADWAL"]').val();
          
-         let latitudeJADWAL = tpl.$('input[name="latitudeJADWAL"]').val();
-         
          let longtitudeJADWAL = tpl.$('input[name="longtitudeJADWAL"]').val();
          
-         let statusJADWAL = tpl.$('input[name="statusJADWAL"]').val();
+         let latitudeJADWAL = tpl.$('input[name="latitudeJADWAL"]').val();
+         
+         let waktuJADWAL = tpl.$('input[name="waktuJADWAL"]').val();
+         
+         let statusJADWAL = tpl.$('select[name="statusJADWAL"]').val();
          
 
-         if(!adaDATA(topikmeetingJADWAL) | !adaDATA(imageJADWAL) | !adaDATA(tglJADWAL) | !adaDATA(tempatJADWAL) | !adaDATA(latitudeJADWAL) | !adaDATA(longtitudeJADWAL) | !adaDATA(statusJADWAL) ) {
+         if(!adaDATA(topikmeetingJADWAL) | !adaDATA(image) | !adaDATA(teamJADWAL) | !adaDATA(tempatJADWAL) | !adaDATA(longtitudeJADWAL) | !adaDATA(latitudeJADWAL) | !adaDATA(waktuJADWAL) | !adaDATA(statusJADWAL) ) {
             FlashMessages.sendWarning('Please complete all of the data to be . . .');
             return;
          }
@@ -193,16 +204,18 @@
          {
             
          topikmeeting: topikmeetingJADWAL,
+
+         image: image,
          
-         image: imageJADWAL,
-         
-         tgl: tglJADWAL,
+         team: teamJADWAL,
          
          tempat: tempatJADWAL,
          
+         longtitude: longtitudeJADWAL,
+         
          latitude: latitudeJADWAL,
          
-         longtitude: longtitudeJADWAL,
+         waktu: waktuJADWAL,
          
          status: statusJADWAL,
          
@@ -228,20 +241,20 @@
          
          let topikmeetingEditJADWAL = tpl.$('input[name="topikmeetingEditJADWAL"]').val();
          
-         let imageEditJADWAL = tpl.$('input[name="imageEditJADWAL"]').val();
-         
-         let tglEditJADWAL = tpl.$('input[name="tglEditJADWAL"]').val();
+         let teamEditJADWAL = tpl.$('select[name="teamEditJADWAL"]').val();
          
          let tempatEditJADWAL = tpl.$('input[name="tempatEditJADWAL"]').val();
          
-         let latitudeEditJADWAL = tpl.$('input[name="latitudeEditJADWAL"]').val();
-         
          let longtitudeEditJADWAL = tpl.$('input[name="longtitudeEditJADWAL"]').val();
          
-         let statusEditJADWAL = tpl.$('input[name="statusEditJADWAL"]').val();
+         let latitudeEditJADWAL = tpl.$('input[name="latitudeEditJADWAL"]').val();
+         
+         let waktuEditJADWAL = tpl.$('input[name="waktuEditJADWAL"]').val();
+         
+         let statusEditJADWAL = tpl.$('select[name="statusEditJADWAL"]').val();
          
 
-         if(!adaDATA(topikmeetingEditJADWAL) | !adaDATA(imageEditJADWAL) | !adaDATA(tglEditJADWAL) | !adaDATA(tempatEditJADWAL) | !adaDATA(latitudeEditJADWAL) | !adaDATA(longtitudeEditJADWAL) | !adaDATA(statusEditJADWAL) ) {
+         if(!adaDATA(topikmeetingEditJADWAL) | !adaDATA(teamEditJADWAL) | !adaDATA(tempatEditJADWAL) | !adaDATA(longtitudeEditJADWAL) | !adaDATA(latitudeEditJADWAL) | !adaDATA(waktuEditJADWAL) | !adaDATA(statusEditJADWAL) ) {
             FlashMessages.sendWarning('Please complete all of the data to be . . .');
             return;
          }
@@ -251,15 +264,15 @@
             
          topikmeeting: topikmeetingEditJADWAL,
          
-         image: imageEditJADWAL,
-         
-         tgl: tglEditJADWAL,
+         team: teamEditJADWAL,
          
          tempat: tempatEditJADWAL,
          
+         longtitude: longtitudeEditJADWAL,
+         
          latitude: latitudeEditJADWAL,
          
-         longtitude: longtitudeEditJADWAL,
+         waktu: waktuEditJADWAL,
          
          status: statusEditJADWAL,
          

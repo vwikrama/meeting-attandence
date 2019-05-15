@@ -17,10 +17,14 @@
          Session.set('dataDelete', '');
          Session.set('isCreating', false);
          Session.set('isDeleting', false);
+         if(!adaDATA(Session.get('pilih'))){
+            Router.go('team');
+         }
 
          this.autorun(function () {
                 subscribtion('anggota', Session.get('oFILTERS'), Session.get('oOPTIONS'), Session.get('limit'));
-         });
+                subscribtion('team',{aktifYN : 1},{},0);
+               });
        };
 
         Template.anggota.onRendered(function () {
@@ -72,6 +76,7 @@
             }
 
             let oFILTERS = {
+               pilih : Session.get('pilih'),
                aktifYN: 1,
                $or: [
                
@@ -189,6 +194,7 @@
          alamat: alamatANGGOTA,
          
             aktifYN: 1,
+            pilih : Session.get('pilih'),
             createByID: UserID(),
             createBy:UserName(),
             createAt: new Date()

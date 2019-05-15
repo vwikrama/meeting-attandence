@@ -1,5 +1,5 @@
 
-    <!-- Generated from flexurio at Sen Mei 13 08:29:13 WIB 2019 By muhamad at Linux muhamad-X455YA 4.15.0-47-generic #50-Ubuntu SMP Wed Mar 13 10:44:52 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux -->
+    <!-- Generated from flexurio at Sel Mei 14 13:34:56 WIB 2019 By muhamad at Linux muhamad-X455YA 4.15.0-47-generic #50-Ubuntu SMP Wed Mar 13 10:44:52 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux -->
 
     <template name='jadwal'>
        <div class='container-fluid app'>
@@ -20,7 +20,7 @@
                       <div class='row-content'>
                          <BR>
                          <p>
-                          {{topikmeeting}} -  {{image}} -  {{tgl}} -  {{tempat}} -  {{latitude}} -  {{longtitude}} -  {{status}} - 
+                          {{topikmeeting}} - {{image}} -  {{team}} -  {{tempat}} -  {{longtitude}} -  {{latitude}} -  {{waktu}} -  {{status}} - 
                          </p>
 
                             <div class='least-content' style='top:20px;'>
@@ -45,15 +45,8 @@
          
 
          <div class='form-group label-floating has-info col-md-6'>
-         <label for='imageEditJADWAL' class='control-label'>IMAGE JADWAL</label>
-         <input name='imageEditJADWAL' id='imageEditJADWAL' type='text' class='form-control' style='font-size:larger;' value='{{image}}'>
-         </div>
-
-         
-
-         <div class='form-group label-floating has-info col-md-6'>
-         <label for='tglEditJADWAL' class='control-label'>TGL JADWAL</label>
-         <input name='tglEditJADWAL' id='tglEditJADWAL' type='text' class='form-control' style='font-size:larger;' value='{{tgl}}'>
+         <label for='teamEditJADWAL' class='control-label'>TEAM JADWAL</label>
+         <input name='teamEditJADWAL' id='teamEditJADWAL' type='text' class='form-control' style='font-size:larger;' value='{{team}}'>
          </div>
 
          
@@ -66,6 +59,13 @@
          
 
          <div class='form-group label-floating has-info col-md-6'>
+         <label for='longtitudeEditJADWAL' class='control-label'>LONGTITUDE JADWAL</label>
+         <input name='longtitudeEditJADWAL' id='longtitudeEditJADWAL' type='text' class='form-control' style='font-size:larger;' value='{{longtitude}}'>
+         </div>
+
+         
+
+         <div class='form-group label-floating has-info col-md-6'>
          <label for='latitudeEditJADWAL' class='control-label'>LATITUDE JADWAL</label>
          <input name='latitudeEditJADWAL' id='latitudeEditJADWAL' type='text' class='form-control' style='font-size:larger;' value='{{latitude}}'>
          </div>
@@ -73,8 +73,8 @@
          
 
          <div class='form-group label-floating has-info col-md-6'>
-         <label for='longtitudeEditJADWAL' class='control-label'>LONGTITUDE JADWAL</label>
-         <input name='longtitudeEditJADWAL' id='longtitudeEditJADWAL' type='text' class='form-control' style='font-size:larger;' value='{{longtitude}}'>
+         <label for='waktuEditJADWAL' class='control-label'>WAKTU JADWAL</label>
+         <input name='waktuEditJADWAL' id='waktuEditJADWAL' type='text' class='form-control' style='font-size:larger;' value='{{waktu}}'>
          </div>
 
          
@@ -108,18 +108,22 @@
          <input name='topikmeetingJADWAL' id='topikmeetingJADWAL' type='text' class='form-control' style='font-size:larger;'>
          </div>
 
-         
 
          <div class='form-group label-floating has-info col-md-6'>
-         <label for='imageJADWAL' class='control-label'>IMAGE JADWAL</label>
-         <input name='imageJADWAL' id='imageJADWAL' type='text' class='form-control' style='font-size:larger;'>
+         <label for='image' class='control-label'>image JADWAL</label>
+         <input name='image' id='image' type='text' class='form-control' style='font-size:larger;'>
          </div>
-
          
 
-         <div class='form-group label-floating has-info col-md-6'>
-         <label for='tglJADWAL' class='control-label'>TGL JADWAL</label>
-         <input name='tglJADWAL' id='tglJADWAL' type='text' class='form-control' style='font-size:larger;'>
+         <div class='form-group label-floating has-info input-field col-md-6'>
+         <label for='teamJADWAL' class='control-label'>TEAM JADWAL</label>
+         <select name="teamJADWAL" id="teamJADWAL" class='form-control' >
+            <option value="" disabled selected>--Pilih Team--</option>
+            {{#each teamsa}}
+            <option value="{{nama_kelompok}}">{{nama_kelompok}}</option>
+            {{/each}}
+         </select>
+         <!-- <input name='teamJADWAL' id='teamJADWAL' type='text' class='form-control' style='font-size:larger;'> -->
          </div>
 
          
@@ -132,22 +136,34 @@
          
 
          <div class='form-group label-floating has-info col-md-6'>
-         <label for='latitudeJADWAL' class='control-label'>LATITUDE JADWAL</label>
-         <input name='latitudeJADWAL' id='latitudeJADWAL' type='text' class='form-control' style='font-size:larger;'>
+         <label for='longtitudeJADWAL' class='control-label'>LONGTITUDE JADWAL</label>
+         <input name='longtitudeJADWAL' id='longtitudeJADWAL' type='number' class='form-control' style='font-size:larger;'>
          </div>
 
          
 
          <div class='form-group label-floating has-info col-md-6'>
-         <label for='longtitudeJADWAL' class='control-label'>LONGTITUDE JADWAL</label>
-         <input name='longtitudeJADWAL' id='longtitudeJADWAL' type='text' class='form-control' style='font-size:larger;'>
+         <label for='latitudeJADWAL' class='control-label'>LATITUDE JADWAL</label>
+         <input name='latitudeJADWAL' id='latitudeJADWAL' type='number' class='form-control' style='font-size:larger;'>
+         </div>
+
+         
+
+         <div class='form-group label-floating has-info col-md-6'>
+         <label for='waktuJADWAL' class='control-label'>WAKTU JADWAL</label>
+         <input name='waktuJADWAL' id='waktuJADWAL' type='datetime' class='form-control' style='font-size:larger;'>
          </div>
 
          
 
          <div class='form-group label-floating has-info col-md-6'>
          <label for='statusJADWAL' class='control-label'>STATUS JADWAL</label>
-         <input name='statusJADWAL' id='statusJADWAL' type='text' class='form-control' style='font-size:larger;'>
+         <select name="statusJADWAL" id="statusJADWAL" class="form-control">
+            <option value="" disabled selected>--Pilih status--</option>
+            <option value="public">Public</option>
+            <option value="invit">Invit</option>
+         </select>
+         <!-- <input name='statusJADWAL' id='statusJADWAL' type='text' class='form-control' style='font-size:larger;'> -->
          </div>
 
          

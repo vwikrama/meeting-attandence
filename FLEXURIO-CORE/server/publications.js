@@ -169,3 +169,4 @@ publishData('anggota', ANGGOTA, {}, {});
 publishData('kelompok', KELOMPOK, {}, {});
 publishData('jadwal', JADWAL, {}, {});
 publishData('team', TEAM, {}, {});
+publishData('jadwal', JADWAL, {}, {});
