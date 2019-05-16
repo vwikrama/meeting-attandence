@@ -91,9 +91,9 @@ Router.route('/wo', function () {
     });
     
 
-    Router.route('/kelompok', function () {
-        Session.set('sURLMenu', 'kelompok');
-       this.render('kelompok');
+    Router.route('/invt', function () {
+        Session.set('sURLMenu', 'invt');
+        this.render('invt');
     });
 
     Router.route('/team', function () {

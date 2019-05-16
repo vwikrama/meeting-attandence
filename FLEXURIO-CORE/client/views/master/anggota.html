@@ -1,126 +1,151 @@
 
-    <!-- Generated from flexurio at Rab Mei  8 09:17:23 WIB 2019 By muhamad at Linux muhamad-X455YA 4.15.0-47-generic #50-Ubuntu SMP Wed Mar 13 10:44:52 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux -->
+   <!-- Generated from flexurio at Rab Mei  8 09:17:23 WIB 2019 By muhamad at Linux muhamad-X455YA 4.15.0-47-generic #50-Ubuntu SMP Wed Mar 13 10:44:52 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux -->
 
-    <template name='anggota'>
-       <div class='container-fluid app'>
-          {{>utama}}
-          {{>menuSearch}}
-          {{#if isActionADD}}
-             {{>menuAdd}}
-          {{/if}}
+   <template name='anggota'>
+      <!-- Compiled and minified CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+      {{>utama}}
+      {{>menuSearch}}
+      {{#if isActionADD}}
+         {{>menuAdd}}
+      {{/if}}
+      <body>
+         <style>
+            .jumbotronAnggota{
+               width: 100%;
+               height: 450px;
+               background-size: cover;
+               background-attachment: fixed;
+               background-image: url('/images/bggroup.jpg');
+               background-repeat: no-repeat;
+               border-bottom:4px solid #42a5f5;
+            }
+            .anggota{
+            min-height: 400px;
+            overflow: hidden;
+            }
+         </style>
+      </body>
+      <div class="jumbotronAnggota valign-wrapper"></div>
+      <section class="anggota">
+         <div class="container-fluid app">
+            <div class="list-group panel panel-default headerApp">
+               <div class="panel-heading">
+                  <div class="form-search">
+                     <a href="#" class="mdi-action-list namaHeader">{{namaHeader}}</a>
+                     <a href="invt" class="btn-invt blue lighten-2 btn-small right waves-effect waves-light">Invite</a>
+                  </div>
+               </div>
+               <table class="responsive-table striped">
+                  <thead>
+                     <tr>
+                        <th>Nama</th>
+                        <th>No Telpon</th>
+                        <th>Status</th>
+                        <th>Alamat</th>
+                        <th>OPSI</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {{#each anggotas}}
+                     <tr class="hoverable">
+                        <td>{{nama}}</td>
+                        <td>{{notlep}}</td>
+                        <td>{{jabatan}}</td>
+                        <td>{{alamat}}</td>
+                        <td>{{>actionListview}}</td>
+                     </tr>
+                        {{#if isEditing}}
+                        {{>blockModals}}
+                        <div class='container animasiAtas' style='position:fixed;top:10%;left:10%;width:80%;z-index:10001;'>
+                           <div class='col-md-12' style='height:auto;max-height:{{sTinggiPopUp}}px;overflow-y:scroll;'>
+                              <div class='form-group label-floating has-info col-md-6'>
+                                 <label for='namaEditANGGOTA' class='control-label'>NAMA ANGGOTA</label>
+                                 <input name='namaEditANGGOTA' id='namaEditANGGOTA' type='text' class='form-control' style='font-size:larger;' value='{{nama}}'>
+                              </div>
+                              <div class='form-group label-floating has-info col-md-6'>
+                                 <label for='notlepEditANGGOTA' class='control-label'>NOTLEP ANGGOTA</label>
+                                 <input name='notlepEditANGGOTA' id='notlepEditANGGOTA' type='text' class='form-control' style='font-size:larger;' value='{{notlep}}'>
+                              </div>         
+                              <div class='form-group label-floating has-info col-md-6'>
+                                 <label for='jabatanEditANGGOTA' class='control-label'>JABATAN ANGGOTA</label>
+                                 <input name='jabatanEditANGGOTA' id='jabatanEditANGGOTA' type='text' class='form-control' style='font-size:larger;' value='{{jabatan}}'>
+                              </div>
+                              <div class='form-group label-floating has-info col-md-6'>
+                                 <label for='alamatEditANGGOTA' class='control-label'>ALAMAT ANGGOTA</label>
+                                 <input name='alamatEditANGGOTA' id='alamatEditANGGOTA' type='text' class='form-control' style='font-size:larger;' value='{{alamat}}'>
+                              </div>
+                           </div>
 
-          <div class='row main {{isLockMenu}} animasiAtas'>
+                           <div class='pull-right'>
+                              <a class='saveEDIT btn btn-primary' style='background-color:green;color:white;'>SAVE</a>
+                           </div>
+                        </div>
+                     {{/if}}
+                     {{/each}}
 
-             <!-- HEADER LISTVIEW -->
-             <div class='list-group panel panel-default headerApp'>
-                {{>headerListview}}
+                     <!-- Create -->
+                     {{#if isCreating}}
+                     {{>blockModals}}
+                        <div class='container animasiAtas' style='position:fixed;top:10%;left:10%;width:80%;z-index:10001;'>
+                           <div class='col-md-12' style='height:auto;max-height:{{sTinggiPopUp}}px;overflow-y:scroll;'>
+                              <div class='form-group label-floating has-info col-md-6'>
+                                 <label for='namaANGGOTA' class='control-label'>NAMA ANGGOTA</label>
+                                 <input name='namaANGGOTA' id='namaANGGOTA' type='text' class='form-control' style='font-size:larger;'>
+                              </div>
+                              <div class='form-group label-floating has-info col-md-6'>
+                                 <label for='notlepANGGOTA' class='control-label'>NOTLEP ANGGOTA</label>
+                                 <input name='notlepANGGOTA' id='notlepANGGOTA' type='text' class='form-control' style='font-size:larger;'>
+                              </div>
+                              <div class='form-group label-floating has-info col-md-6'>
+                                 <label for='jabatanANGGOTA' class='control-label'>JABATAN ANGGOTA</label>
+                                 <input name='jabatanANGGOTA' id='jabatanANGGOTA' type='text' class='form-control' style='font-size:larger;'>
+                              </div>
+                              <div class='form-group label-floating has-info col-md-6'>
+                                 <label for='alamatANGGOTA' class='control-label'>ALAMAT ANGGOTA</label>
+                                 <input name='alamatANGGOTA' id='alamatANGGOTA' type='text' class='form-control' style='font-size:larger;'>
+                              </div>
+                           </div>
 
-                {{#each anggotas}}
-                   <div class='list-group-item'>
-                      <div class='row-content'>
-                         <BR>
-                         <p>
-                          {{nama}} -  {{notlep}} -  {{jabatan}} -  {{alamat}} - 
-                         </p>
+                           <div class='pull-right'>
+                              <a class='save btn btn-primary' style='background-color:green;color:white;'>SAVE</a>
+                           </div>
+                        </div>
+                     {{/if}}
 
-                            <div class='least-content' style='top:20px;'>
-                               {{>actionListview}}
-                            </div>
-                      </div>
-                   </div>
-
-                    {{>flxcomments isCommentOpen=false _id=_id comments=comments}}
-
-                   {{#if isEditing}}
-                      {{>blockModals}}
-                      <div class='container animasiAtas' style='position:fixed;top:10%;left:10%;width:80%;z-index:10001;'>
-                         <div class='col-md-12' style='height:auto;max-height:{{sTinggiPopUp}}px;overflow-y:scroll;'>
-                         
-
-         <div class='form-group label-floating has-info col-md-6'>
-         <label for='namaEditANGGOTA' class='control-label'>NAMA ANGGOTA</label>
-         <input name='namaEditANGGOTA' id='namaEditANGGOTA' type='text' class='form-control' style='font-size:larger;' value='{{nama}}'>
+                     {{#if isDeleting}}
+                        {{>formDeleting}}
+                     {{/if}}
+                  </tbody>
+               </table>
+            </div>
          </div>
-
-         
-
-         <div class='form-group label-floating has-info col-md-6'>
-         <label for='notlepEditANGGOTA' class='control-label'>NOTLEP ANGGOTA</label>
-         <input name='notlepEditANGGOTA' id='notlepEditANGGOTA' type='text' class='form-control' style='font-size:larger;' value='{{notlep}}'>
+      </section>
+      <footer class="page-footer blue lighten-2">
+         <div class="container">
+            <div class="row">
+               <div class="col l6 s12">
+                  <h5 class="white-text">Footer Content</h5>
+                  <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+               </div>
+               <div class="col l4 offset-l2 s12">
+                  <h5 class="white-text">Links</h5>
+                  <ul>
+                     <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                     <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                     <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                     <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                  </ul>
+               </div>
+            </div>
          </div>
-
-         
-
-         <div class='form-group label-floating has-info col-md-6'>
-         <label for='jabatanEditANGGOTA' class='control-label'>JABATAN ANGGOTA</label>
-         <input name='jabatanEditANGGOTA' id='jabatanEditANGGOTA' type='text' class='form-control' style='font-size:larger;' value='{{jabatan}}'>
+         <div class="footer-copyright blue lighten-1">
+            <div class="container">
+            © 2019 Copyright Text
+               <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
          </div>
-
-         
-
-         <div class='form-group label-floating has-info col-md-6'>
-         <label for='alamatEditANGGOTA' class='control-label'>ALAMAT ANGGOTA</label>
-         <input name='alamatEditANGGOTA' id='alamatEditANGGOTA' type='text' class='form-control' style='font-size:larger;' value='{{alamat}}'>
-         </div>
-
-         
-                         </div>
-
-                         <div class='pull-right'>
-                         <a class='saveEDIT btn btn-primary' style='background-color:green;color:white;'>SAVE</a>
-                         </div>
-                      </div>
-                   {{/if}}
-                {{/each}}
-             </div>
-             {{>menuLoadMore}}
-          </div>
-
-          {{#if isCreating}}
-             {{>blockModals}}
-             <div class='container animasiAtas' style='position:fixed;top:10%;left:10%;width:80%;z-index:10001;'>
-                <div class='col-md-12' style='height:auto;max-height:{{sTinggiPopUp}}px;overflow-y:scroll;'>
-                
-
-         <div class='form-group label-floating has-info col-md-6'>
-         <label for='namaANGGOTA' class='control-label'>NAMA ANGGOTA</label>
-         <input name='namaANGGOTA' id='namaANGGOTA' type='text' class='form-control' style='font-size:larger;'>
-         </div>
-
-         
-
-         <div class='form-group label-floating has-info col-md-6'>
-         <label for='notlepANGGOTA' class='control-label'>NOTLEP ANGGOTA</label>
-         <input name='notlepANGGOTA' id='notlepANGGOTA' type='text' class='form-control' style='font-size:larger;'>
-         </div>
-
-         
-
-         <div class='form-group label-floating has-info col-md-6'>
-         <label for='jabatanANGGOTA' class='control-label'>JABATAN ANGGOTA</label>
-         <input name='jabatanANGGOTA' id='jabatanANGGOTA' type='text' class='form-control' style='font-size:larger;'>
-         </div>
-
-         
-
-         <div class='form-group label-floating has-info col-md-6'>
-         <label for='alamatANGGOTA' class='control-label'>ALAMAT ANGGOTA</label>
-         <input name='alamatANGGOTA' id='alamatANGGOTA' type='text' class='form-control' style='font-size:larger;'>
-         </div>
-
-         
-                </div>
-
-                <div class='pull-right'>
-                   <a class='save btn btn-primary' style='background-color:green;color:white;'>SAVE</a>
-                </div>
-             </div>
-          {{/if}}
-
-          {{#if isDeleting}}
-             {{>formDeleting}}
-          {{/if}}
-       </div>
-    </template>
+      </footer>
+   </template>
 
     

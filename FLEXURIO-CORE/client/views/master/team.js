@@ -157,9 +157,7 @@
             e.preventDefault();
             Session.set('pilih',this._id);
             Router.go('anggota');
-         }
-        
-
+         },
       });
 
 
