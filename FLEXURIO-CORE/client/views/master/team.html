@@ -33,14 +33,13 @@
             </div>
          </div>
       </div>
-
       <section class="group">
          <div class="row">
             {{#each teams}}
             <div class="col s12 m3">
                <div class="card hoverable card-join">
                   <div class="card-image">
-                     <img src="/images/qa.jpg" alt="">   <!--{{image}} -->
+                     <img src="{{image}}" alt="">   <!-- -->
                      <span class="card-title grey-text text-lighten-5">{{nama_kelompok}}</span>
                   </div>
                   <div class="btn-anggota content center-align waves-effect waves-block waves-light haverable blue lighten-1">
@@ -68,8 +67,14 @@
                   </div>
                   <div class='form-group label-floating has-info col-md-6'>
                         <label for='imageEditTEAM' class='control-label'>IMAGE TEAM</label>
-                        <input name='imageEditTEAM' id='imageEditTEAM' type='text' class='form-control' style='font-size:larger;' value='{{image}}'>
-                  </div> 
+                        <div class="btn">
+                           <span>File</span>
+                           <input type="file" multiple>
+                        </div> 
+                        <div class="file-path-wapper"> 
+                        <input name='imageEditTEAM' id='imageEditTEAM' type='text' class='file-path validate form-control' style='font-size:larger;' value='{{image}}' placeholder="Upload one or more files">
+                     </div> 
+                     </div> 
                </div>
 
                <div class='pull-right'>
@@ -90,7 +95,13 @@
                      </div>
                      <div class='form-group label-floating has-info col-md-6'>
                            <label for='imageTEAM' class='control-label'>IMAGE TEAM</label>
-                           <input name='imageTEAM' id='imageTEAM' type='text' class='form-control' style='font-size:larger;'>
+                           <div class="btn">
+                                 <span>File</span>
+                                 <input type="file" multiple>
+                              </div>
+                              <div class="file-path-wapper">
+                                    <input name='imageTEAM' id='imageTEAM' type='file'  class='form-control' style='font-size:larger;' placeholder="Upload one or more Files">
+                           </div>
                      </div>
                   </div> 
 

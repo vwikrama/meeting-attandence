@@ -1,33 +1,33 @@
 
           /**
-          * Generated from flexurio at Sen Mei 13 09:11:27 WIB 2019
+          * Generated from flexurio at Kam Mei 16 10:11:35 WIB 2019
           * By muhamad at Linux muhamad-X455YA 4.15.0-47-generic #50-Ubuntu SMP Wed Mar 13 10:44:52 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
           */
 
       import { Template } from 'meteor/templating';
       import { Session } from 'meteor/session';
-      import './team.html';
+      import './user.html';
 
-      Template.team.created = function () {
+      Template.user.created = function () {
          Session.set('limit', 50);
          Session.set('oFILTERS', {});
          Session.set('oOPTIONS', {});
          Session.set('textSearch', '');
-         Session.set('namaHeader', 'DATA TEAM');
+         Session.set('namaHeader', 'DATA USER');
          Session.set('dataDelete', '');
          Session.set('isCreating', false);
          Session.set('isDeleting', false);
 
          this.autorun(function () {
-                subscribtion('team', Session.get('oFILTERS'), Session.get('oOPTIONS'), Session.get('limit'));
+                subscribtion('user', Session.get('oFILTERS'), Session.get('oOPTIONS'), Session.get('limit'));
          });
        };
 
-        Template.team.onRendered(function () {
+        Template.user.onRendered(function () {
             ScrollHandler();
         });
 
-        Template.team.helpers({
+        Template.user.helpers({
             isLockMenu: function () {
                 return isLockMenu();
             },
@@ -60,7 +60,7 @@
          isCreating: function() {
             return Session.get('isCreating');
          },
-         teams: function() {
+         users: function() {
             let textSearch = '';
             if(adaDATA(Session.get('textSearch'))) {
                textSearch = Session.get('textSearch').replace('#', '').trim();
@@ -75,22 +75,28 @@
                aktifYN: 1,
                $or: [
                
-         {nama_kelompok: { $regex : new RegExp(textSearch, 'i') }},
+         {nama: { $regex : new RegExp(textSearch, 'i') }},
          
-         {image: { $regex : new RegExp(textSearch, 'i') }},
+         {notlep: { $regex : new RegExp(textSearch, 'i') }},
+         
+         {alamat: { $regex : new RegExp(textSearch, 'i') }},
+         
+         {latitude: { $regex : new RegExp(textSearch, 'i') }},
+         
+         {longtitude: { $regex : new RegExp(textSearch, 'i') }},
          
                {_id: { $regex : new RegExp(textSearch, 'i') }},
                ]
             }
 
-            return TEAM.find(
+            return USER.find(
                 oFILTERS,
                 oOPTIONS
             );
          }
       });
 
-      Template.team.events({
+      Template.user.events({
          'click a.cancel': function(e, tpl){
             e.preventDefault();
             Session.set('isCreating', false);
@@ -101,7 +107,7 @@
 
          'click a.deleteDataOK': function(e, tpl){
             e.preventDefault();
-            deleteTEAM();
+            deleteUSER();
             FlashMessages.sendWarning('Attention, ' + Session.get('dataDelete') + ' successfully DELETE !');
             Session.set('isDeleting', false);
          },
@@ -110,7 +116,7 @@
             Scroll2Top();
 
             Session.set('isDeleting', true);
-            Session.set('dataDelete', Session.get('namaHeader').toLowerCase() + ' ' + this.namaTEAM);
+            Session.set('dataDelete', Session.get('namaHeader').toLowerCase() + ' ' + this.namaUSER);
             Session.set('idDeleting', this._id);
          },
 
@@ -120,25 +126,16 @@
 
             Session.set('isCreating', true);
          },
-         'keyup #namaTEAM': function (e, tpl) {
+         'keyup #namaUSER': function (e, tpl) {
             e.preventDefault();
             if (e.keyCode == 13) {
-               insertTEAM(tpl);
+               insertUSER(tpl);
             }
          },
          'click a.save': function(e, tpl){
-            e.preventDefault()
-            var x = document.querySelector('input[name="imageTEAM"]').files[0]
-            getBase64(x, function (rest,roolback){
-             if(x =1){
-               insertTEAM(tpl,roolback);
-             }else{
-
-             }
-             
-            });
+            e.preventDefault();
+            insertUSER(tpl);
          },
-
 
          'click a.editData': function(e, tpl){
             e.preventDefault();
@@ -147,56 +144,55 @@
             Session.set('idEditing', this._id);
             Session.set('isEditing', true);
          },
-         'keyup #namaEditTEAM': function (e, tpl) {
+         'keyup #namaEditUSER': function (e, tpl) {
             e.preventDefault();
             if (e.keyCode == 13) {
-               updateTEAM(tpl);
+               updateUSER(tpl);
             }
          },
-         'click a.saveEDIT': function(e,tpl){
+         'click a.saveEDIT': function(e, tpl){
             e.preventDefault();
-            var x = document.querySelector('input[name="imageTEAM"]').files[0]
-            getBase64(x, function (rest,roolback){
-             if(x =1){
-               updateTEAM(tpl,roolback);
-             }else{
-
-             }
-             
-            });
+            updateUSER(tpl);
          },
          'submit form.form-comments': function (e, tpl) {
             e.preventDefault();
-            flxcomments(e,tpl,TEAM);
+            flxcomments(e,tpl,USER);
+        }
 
-         },
-         'click div.btn-anggota': function (e, tpl){
-            e.preventDefault();
-            Session.set('pilih',this._id);
-            Router.go('anggota');
-         },
       });
 
 
-      insertTEAM = function (tpl,roolback) {
+      insertUSER = function (tpl) {
 
          
-         let nama_kelompokTEAM = tpl.$('input[name="nama_kelompokTEAM"]').val();
+         let namaUSER = tpl.$('input[name="namaUSER"]').val();
          
-         let imageTEAM = roolback;
+         let notlepUSER = tpl.$('input[name="notlepUSER"]').val();
+         
+         let alamatUSER = tpl.$('input[name="alamatUSER"]').val();
+         
+         let latitudeUSER = tpl.$('input[name="latitudeUSER"]').val();
+         
+         let longtitudeUSER = tpl.$('input[name="longtitudeUSER"]').val();
          
 
-         if(!adaDATA(nama_kelompokTEAM) | !adaDATA(imageTEAM) ) {
+         if(!adaDATA(namaUSER) | !adaDATA(notlepUSER) | !adaDATA(alamatUSER) | !adaDATA(latitudeUSER) | !adaDATA(longtitudeUSER) ) {
             FlashMessages.sendWarning('Please complete all of the data to be . . .');
             return;
          }
 
-         TEAM.insert(
+         USER.insert(
          {
             
-         nama_kelompok: nama_kelompokTEAM,
+         nama: namaUSER,
          
-         image: imageTEAM,
+         notlep: notlepUSER,
+         
+         alamat: alamatUSER,
+         
+         latitude: latitudeUSER,
+         
+         longtitude: longtitudeUSER,
          
             aktifYN: 1,
             createByID: UserID(),
@@ -215,25 +211,37 @@
       };
 
 
-      updateTEAM = function (tpl,roolback) {
+      updateUSER = function (tpl) {
 
          
-         let nama_kelompokEditTEAM = tpl.$('input[name="nama_kelompokEditTEAM"]').val();
+         let namaEditUSER = tpl.$('input[name="namaEditUSER"]').val();
          
-         let imageEditTEAM = roolback;
+         let notlepEditUSER = tpl.$('input[name="notlepEditUSER"]').val();
+         
+         let alamatEditUSER = tpl.$('input[name="alamatEditUSER"]').val();
+         
+         let latitudeEditUSER = tpl.$('input[name="latitudeEditUSER"]').val();
+         
+         let longtitudeEditUSER = tpl.$('input[name="longtitudeEditUSER"]').val();
          
 
-         if(!adaDATA(nama_kelompokEditTEAM) | !adaDATA(imageEditTEAM) ) {
+         if(!adaDATA(namaEditUSER) | !adaDATA(notlepEditUSER) | !adaDATA(alamatEditUSER) | !adaDATA(latitudeEditUSER) | !adaDATA(longtitudeEditUSER) ) {
             FlashMessages.sendWarning('Please complete all of the data to be . . .');
             return;
          }
 
-         TEAM.update({_id:Session.get('idEditing')},
+         USER.update({_id:Session.get('idEditing')},
          { $set:{
             
-         nama_kelompok: nama_kelompokEditTEAM,
+         nama: namaEditUSER,
          
-         image: imageEditTEAM,
+         notlep: notlepEditUSER,
+         
+         alamat: alamatEditUSER,
+         
+         latitude: latitudeEditUSER,
+         
+         longtitude: longtitudeEditUSER,
          
             updateByID: UserID(),
             updateBy:UserName(),
@@ -252,14 +260,14 @@
       );
    };
 
-   deleteTEAM = function () {
+   deleteUSER = function () {
 
       if(!adaDATA(Session.get('idDeleting'))) {
          FlashMessages.sendWarning('Please select data that you want to remove . . .');
          return;
       }
 
-      TEAM.update({_id:Session.get('idDeleting')},
+      USER.update({_id:Session.get('idDeleting')},
           { $set:{
              aktifYN: 0,
              deleteByID: UserID(),

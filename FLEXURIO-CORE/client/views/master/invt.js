@@ -22,7 +22,7 @@
             }
    
             this.autorun(function () {
-               subscribtion('anggota', Session.get('oFILTERS'), Session.get('oOPTIONS'), Session.get('limit'));
+               // subscribtion('anggota', Session.get('oFILTERS'), Session.get('oOPTIONS'), Session.get('limit'));
                subscribtion('team',{aktifYN : 1},{},0);
             });
           };
@@ -78,6 +78,7 @@
             'click a.save': function(e, tpl){
                e.preventDefault();
                insertANGGOTA(tpl);
+               
             },
    
          });
@@ -86,7 +87,7 @@
          insertANGGOTA = function (tpl) {
    
             
-            let namaANGGOTA = tpl.$('select[name="namaANGGOTA"]').val();
+            let namaANGGOTA = tpl.$('input[name="namaANGGOTA"]').val();
             
             let notlepANGGOTA = tpl.$('input[name="notlepANGGOTA"]').val();
             

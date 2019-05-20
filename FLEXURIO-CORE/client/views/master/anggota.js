@@ -123,6 +123,7 @@
                Session.set('isDeleting', true);
                Session.set('dataDelete', Session.get('namaHeader').toLowerCase() + ' ' + this.namaANGGOTA);
                Session.set('idDeleting', this._id);
+            
             },
    
             'click a.create': function(e, tpl){
@@ -174,7 +175,7 @@
             
             let notlepANGGOTA = tpl.$('input[name="notlepANGGOTA"]').val();
             
-            let jabatanANGGOTA = tpl.$('input[name="jabatanANGGOTA"]').val();
+            let jabatanANGGOTA = tpl.$('select[name="jabatanANGGOTA"]').val();
             
             let alamatANGGOTA = tpl.$('input[name="alamatANGGOTA"]').val();
             

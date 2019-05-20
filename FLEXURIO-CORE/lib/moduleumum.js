@@ -24,6 +24,17 @@ getSESSION = function (nama) {
     return nilaiBaru;
 };
 
+getBase64 = function (file,roolback) {
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+        roolback(1,reader.result);
+    };
+    reader.onerror = function (error) {
+        roolback(0,'Error: ', error);
+    };
+ }
+
 setBOOLEAN = function (nama, nilai) {
     Session.set(nama, nilai);
 };

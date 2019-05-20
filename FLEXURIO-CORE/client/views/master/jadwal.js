@@ -146,7 +146,15 @@
          },
          'click a.save': function(e, tpl){
             e.preventDefault();
-            insertJADWAL(tpl);
+            var x = document.querySelector('input[name="image"]').files[0]
+            getBase64(x, function (rest,roolback){
+             if(x =1){
+               insertJADWAL(tpl,roolback);
+             }else{
+
+             }
+             
+            });
          },
 
          'click a.editData': function(e, tpl){
@@ -175,12 +183,12 @@
       });
 
 
-      insertJADWAL = function (tpl) {
+      insertJADWAL = function (tpl,roolback) {
 
          
          let topikmeetingJADWAL = tpl.$('input[name="topikmeetingJADWAL"]').val();
 
-         let image = tpl.$('input[name="image"]').val();
+         let image = roolback;
          
          let teamJADWAL = tpl.$('select[name="teamJADWAL"]').val();
          

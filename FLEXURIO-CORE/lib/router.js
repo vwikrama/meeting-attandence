@@ -107,3 +107,9 @@ Router.route('/wo', function () {
        this.render('jadwal');
     });
     
+
+    Router.route('/user', function () {
+        Session.set('sURLMenu', 'user');
+       this.render('user');
+    });
+    

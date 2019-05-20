@@ -1,6 +1,6 @@
 
-    Router.route('/jadwal', function () {
-        Session.set('sURLMenu', 'jadwal');
-       this.render('jadwal');
+    Router.route('/user', function () {
+        Session.set('sURLMenu', 'user');
+       this.render('user');
     });
     
