@@ -19,7 +19,7 @@
          Session.set('isDeleting', false);
 
          this.autorun(function () {
-                subscribtion('team', Session.get('oFILTERS'), Session.get('oOPTIONS'), Session.get('limit'));
+            subscribtion('team', Session.get('oFILTERS'), Session.get('oOPTIONS'), Session.get('limit'));
          });
        };
 
@@ -135,7 +135,7 @@
              }else{
 
              }
-             
+
             });
          },
 
@@ -155,7 +155,7 @@
          },
          'click a.saveEDIT': function(e,tpl){
             e.preventDefault();
-            var x = document.querySelector('input[name="imageTEAM"]').files[0]
+            var x = document.querySelector('input[name="imageEditTEAM"]').files[0]
             getBase64(x, function (rest,roolback){
              if(x =1){
                updateTEAM(tpl,roolback);

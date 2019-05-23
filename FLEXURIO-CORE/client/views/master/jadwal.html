@@ -1,218 +1,200 @@
 
     <!-- Generated from flexurio at Sel Mei 14 13:34:56 WIB 2019 By muhamad at Linux muhamad-X455YA 4.15.0-47-generic #50-Ubuntu SMP Wed Mar 13 10:44:52 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux -->
 
-    <template name='jadwal'>
+   <template name='jadwal'>
 
-         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-         <body>
-            <style>
-            .card-image img{
-               height: 100px;
-               
-            }
-            </style>
-         </body>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+      <body>
+         <style>
+         .card-image img{
+            height: 100px;      
+         }
+         .jadwal{
+            margin-bottom: 30px;
+         }
+         .jadwal .card .card-image{
+            height: 250px;
+            overflow: hidden;
+         }
+         </style>
+      </body>
                  
-       <div class='container-fluid app'>
-          {{>utama}}
-          {{>menuSearch}}
-          {{#if isActionADD}}
-             {{>menuAdd}}
-          {{/if}}
-
-          <div class="row">
-           {{#each jadwals}}
+      <div class='container-fluid app'>
+         {{>utama}}
+         {{>menuSearch}}
+         {{#if isActionADD}}
+            {{>menuAdd}}
+         {{/if}}
+         <section class="jadwal">
+            <div class="row">
+            {{#each jadwals}}
                <div class="col s12 m4">
-               <div class="card"> 
+                  <div class="card"> 
                      <div class="card-image waves-effect waves-block waves-light">
-                       <img class="" src="{{image}}">
+                        <img class="" src="{{image}}">
                      </div>
                      <div class="content">
-                       <span class="card-title activator grey-text text-darken-4">{{topikmeeting}}<i class="material-icons right">more_vert</i></span>
-                       
+                        <span class="card-title activator grey-text text-darken-4">{{topikmeeting}}<i class="material-icons right">more_vert</i></span>
                      </div>
                      <div class="card-action">
-                           {{#if isActionEDIT }}
-                              <a class="editData" style="color:orange;" data-toggle="tooltip" title="EDIT DATA">EDIT</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                           {{/if}}
-                           {{#if isActionDELETE}}
-                              <a class="deleteData" style="color:red;"  data-toggle="tooltip" title="DELETE DATA">DELETE</a>
-                           {{/if}}
-                        </div>
+                        {{#if isActionEDIT }}
+                           <a class="editData" style="color:orange;" data-toggle="tooltip" title="EDIT DATA">EDIT</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        {{/if}}
+                        {{#if isActionDELETE}}
+                           <a class="deleteData" style="color:red;"  data-toggle="tooltip" title="DELETE DATA">DELETE</a>
+                        {{/if}}
+                     </div>
                      <div class="card-reveal">
-                       <span class="card-title grey-text text-darken-4">{{topikmeeting}}<i class="material-icons right">close</i></span>
-                       <p>Group  : {{team}}
-                          <br>   
-                          Lokasi  :  {{tempat}}
-                          <br>
-                          Longtitude  :{{longtlitude}}
-                          <br>
-                          Latitude  :{{latitude}}
-                          <br>
-                          Time  : {{waktu}}
-                          <br>
-                          Status  : {{status}}
-                       </p>
+                        <span class="card-title grey-text text-darken-4">{{topikmeeting}}<i class="material-icons right">close</i></span>
+                        <p>
+                           Group  : {{team}}
+                           <br>   
+                           Lokasi  :  {{tempat}}
+                           <br>
+                           Longtitude  :{{longtitude}}
+                           <br>
+                           Latitude  :{{latitude}}
+                           <br>
+                           Time  : {{waktu}}
+                           <br>
+                           Status  : {{status}}
+                        </p>
+                        <a class="absen waves-effect waves-light btn blue lighten-1 grey-text text-lighten-4" data-toggle="tooltip" title="Absen">Absen</a>
+                     </div>
+                  </div>
+               </div>
+               {{#if isEditing}}
+               {{>blockModals}}
+               <div class='container animasiAtas' style='position:fixed;top:10%;left:10%;width:80%;z-index:10001;'>
+                  <div class='col-md-12' style='height:auto;max-height:{{sTinggiPopUp}}px;overflow-y:scroll;'>
+                     <div class='form-group label-floating has-info col-md-6'>
+                        <label for='topikmeetingEditJADWAL' class='control-label'>TOPIKMEETING JADWAL</label>
+                        <input name='topikmeetingEditJADWAL' id='topikmeetingEditJADWAL' type='text' class='form-control' style='font-size:larger;' value='{{topikmeeting}}'>
+                     </div>
+                     <div class='form-group label-floating has-info col-md-6'>
+                        <label for='imageEditJADWAL' class='control-label'>image JADWAL</label>
+                        <input name='imageEditJADWAL' id='imageEditJADWAL' type='text' class='form-control' style='font-size:larger;' value='{{topikmeeting}}'>
+                     </div>
+                     <div class='form-group label-floating has-info col-md-6'>
+                        <label for='teamEditJADWAL' class='control-label'>TEAM JADWAL</label>
+                        <input name='teamEditJADWAL' id='teamEditJADWAL' type='text' class='form-control' style='font-size:larger;' value='{{team}}'>
+                     </div>
+                     <div class='form-group label-floating has-info col-md-6'>
+                        <label for='tempatEditJADWAL' class='control-label'>TEMPAT JADWAL</label>
+                        <input name='tempatEditJADWAL' id='tempatEditJADWAL' type='text' class='form-control' style='font-size:larger;' value='{{tempat}}'>
+                     </div>
+                     <div class='form-group label-floating has-info col-md-6'>
+                        <label for='longtitudeEditJADWAL' class='control-label'>LONGTITUDE JADWAL</label>
+                        <input name='longtitudeEditJADWAL' id='longtitudeEditJADWAL' type='text' class='form-control' style='font-size:larger;' value='{{longtitude}}'>
+                     </div>
+                     <div class='form-group label-floating has-info col-md-6'>
+                        <label for='latitudeEditJADWAL' class='control-label'>LATITUDE JADWAL</label>
+                        <input name='latitudeEditJADWAL' id='latitudeEditJADWAL' type='text' class='form-control' style='font-size:larger;' value='{{latitude}}'>
+                     </div>
+                     <div class='form-group label-floating has-info col-md-6'>
+                        <label for='waktuEditJADWAL' class='control-label'>WAKTU JADWAL</label>
+                        <input name='waktuEditJADWAL' id='waktuEditJADWAL' type='text' class='form-control' style='font-size:larger;' value='{{waktu}}'>
+                     </div>
+                     <div class='form-group label-floating has-info col-md-6'>
+                        <label for='statusEditJADWAL' class='control-label'>STATUS JADWAL</label>
+                        <input name='statusEditJADWAL' id='statusEditJADWAL' type='text' class='form-control' style='font-size:larger;' value='{{status}}'>
                      </div>
                   </div>
 
-                   </div>
-                   {{#if isEditing}}
-                   {{>blockModals}}
-                   <div class='container animasiAtas' style='position:fixed;top:10%;left:10%;width:80%;z-index:10001;'>
-                      <div class='col-md-12' style='height:auto;max-height:{{sTinggiPopUp}}px;overflow-y:scroll;'>
-                      
+                  <div class='pull-right'>
+                     <a class='saveEDIT btn btn-primary' style='background-color:green;color:white;'>SAVE</a>
+                  </div>
+               </div>
+               {{/if}}
+            {{/each}}
 
-      <div class='form-group label-floating has-info col-md-6'>
-      <label for='topikmeetingEditJADWAL' class='control-label'>TOPIKMEETING JADWAL</label>
-      <input name='topikmeetingEditJADWAL' id='topikmeetingEditJADWAL' type='text' class='form-control' style='font-size:larger;' value='{{topikmeeting}}'>
-      </div>
+            {{#if isCreating}}
+            {{>blockModals}}
+               <div class='container animasiAtas' style='position:fixed;top:10%;left:10%;width:80%;z-index:10001;'>
+                  <div class='col-md-12' style='height:auto;max-height:{{sTinggiPopUp}}px;overflow-y:scroll;'>
+                     <div class='form-group label-floating has-info col-md-6'>
+                     <label for='topikmeetingJADWAL' class='control-label'>TOPIKMEETING JADWAL</label>
+                     <input name='topikmeetingJADWAL' id='topikmeetingJADWAL' type='text' class='form-control' style='font-size:larger;'>
+                     </div>
+                     <div class='form-group label-floating has-info col-md-6'>
+                        <label for='image' class='control-label'>image JADWAL</label>
+                        <div class="btn">
+                           <span>File</span>
+                           <input type="file" name="image">
+                        </div>
+                     </div>
+                     <div class='form-group label-floating has-info input-field col-md-6'>
+                        <label for='teamJADWAL' class='control-label'>TEAM JADWAL</label>
+                        <select name="teamJADWAL" id="teamJADWAL" class='form-control' >
+                           <option value="" disabled selected>--Pilih Team--</option>
+                           {{#each teamsa}}
+                           <option value="{{nama_kelompok}}">{{nama_kelompok}}</option>
+                           {{/each}}
+                        </select>
+                     </div>
+                     <div class='form-group label-floating has-info col-md-6'>
+                        <label for='tempatJADWAL' class='control-label'>TEMPAT JADWAL</label>
+                        <input name='tempatJADWAL' id='tempatJADWAL' type='text' class='form-control' style='font-size:larger;'>
+                     </div>
+                     <div class='form-group label-floating has-info col-md-6'>
+                        <label for='longtitudeJADWAL' class='control-label'>LONGTITUDE JADWAL</label>
+                        <input name='longtitudeJADWAL' id='longtitudeJADWAL' type='number' class='form-control' style='font-size:larger;'>
+                     </div>
+                     <div class='form-group label-floating has-info col-md-6'>
+                        <label for='latitudeJADWAL' class='control-label'>LATITUDE JADWAL</label>
+                        <input name='latitudeJADWAL' id='latitudeJADWAL' type='number' class='form-control' style='font-size:larger;'>
+                     </div>
+                     <div class='form-group label-floating has-info col-md-6'>
+                        <label for='waktuJADWAL' class='control-label'>WAKTU JADWAL</label>
+                        <input name='waktuJADWAL' id='waktuJADWAL' type='datetime' class='form-control' style='font-size:larger;'>
+                     </div>
+                     <div class='form-group label-floating has-info col-md-6'>
+                        <label for='statusJADWAL' class='control-label'>STATUS JADWAL</label>
+                        <select name="statusJADWAL" id="statusJADWAL" class="form-control">
+                           <option value="" disabled selected>--Pilih status--</option>
+                           <option value="public">Public</option>
+                           <option value="invit">Invit</option>
+                        </select>
+                     </div>
+                  </div>
 
-
-      <div class='form-group label-floating has-info col-md-6'>
-         <label for='imageEditJADWAL' class='control-label'>image JADWAL</label>
-         <input name='imageEditJADWAL' id='imageEditJADWAL' type='text' class='form-control' style='font-size:larger;' value='{{topikmeeting}}'>
-         </div>
-
-      
-
-      <div class='form-group label-floating has-info col-md-6'>
-      <label for='teamEditJADWAL' class='control-label'>TEAM JADWAL</label>
-      <input name='teamEditJADWAL' id='teamEditJADWAL' type='text' class='form-control' style='font-size:larger;' value='{{team}}'>
-      </div>
-
-      
-
-      <div class='form-group label-floating has-info col-md-6'>
-      <label for='tempatEditJADWAL' class='control-label'>TEMPAT JADWAL</label>
-      <input name='tempatEditJADWAL' id='tempatEditJADWAL' type='text' class='form-control' style='font-size:larger;' value='{{tempat}}'>
-      </div>
-
-      
-
-      <div class='form-group label-floating has-info col-md-6'>
-      <label for='longtitudeEditJADWAL' class='control-label'>LONGTITUDE JADWAL</label>
-      <input name='longtitudeEditJADWAL' id='longtitudeEditJADWAL' type='text' class='form-control' style='font-size:larger;' value='{{longtitude}}'>
-      </div>
-
-      
-
-      <div class='form-group label-floating has-info col-md-6'>
-      <label for='latitudeEditJADWAL' class='control-label'>LATITUDE JADWAL</label>
-      <input name='latitudeEditJADWAL' id='latitudeEditJADWAL' type='text' class='form-control' style='font-size:larger;' value='{{latitude}}'>
-      </div>
-
-      
-
-      <div class='form-group label-floating has-info col-md-6'>
-      <label for='waktuEditJADWAL' class='control-label'>WAKTU JADWAL</label>
-      <input name='waktuEditJADWAL' id='waktuEditJADWAL' type='text' class='form-control' style='font-size:larger;' value='{{waktu}}'>
-      </div>
-
-      
-
-      <div class='form-group label-floating has-info col-md-6'>
-      <label for='statusEditJADWAL' class='control-label'>STATUS JADWAL</label>
-      <input name='statusEditJADWAL' id='statusEditJADWAL' type='text' class='form-control' style='font-size:larger;' value='{{status}}'>
-      </div>
-
-      
-                      </div>
-
-                      <div class='pull-right'>
-                      <a class='saveEDIT btn btn-primary' style='background-color:green;color:white;'>SAVE</a>
-                      </div>
-                   </div>
-                {{/if}}
-           {{/each}}
-
-           {{#if isCreating}}
-           {{>blockModals}}
-           <div class='container animasiAtas' style='position:fixed;top:10%;left:10%;width:80%;z-index:10001;'>
-              <div class='col-md-12' style='height:auto;max-height:{{sTinggiPopUp}}px;overflow-y:scroll;'>
-              
-
-       <div class='form-group label-floating has-info col-md-6'>
-       <label for='topikmeetingJADWAL' class='control-label'>TOPIKMEETING JADWAL</label>
-       <input name='topikmeetingJADWAL' id='topikmeetingJADWAL' type='text' class='form-control' style='font-size:larger;'>
-       </div>
-
-
-       <div class='form-group label-floating has-info col-md-6'>
-       <label for='image' class='control-label'>image JADWAL</label>
-       <div class="btn">
-          <span>File</span>
-          <input type="file" name="image">
-       </div>
-       </div>
-       
-
-       <div class='form-group label-floating has-info input-field col-md-6'>
-       <label for='teamJADWAL' class='control-label'>TEAM JADWAL</label>
-       <select name="teamJADWAL" id="teamJADWAL" class='form-control' >
-          <option value="" disabled selected>--Pilih Team--</option>
-          {{#each teamsa}}
-          <option value="{{nama_kelompok}}">{{nama_kelompok}}</option>
-          {{/each}}
-       </select>
-       <!-- <input name='teamJADWAL' id='teamJADWAL' type='text' class='form-control' style='font-size:larger;'> -->
-       </div>
-
-       
-
-       <div class='form-group label-floating has-info col-md-6'>
-       <label for='tempatJADWAL' class='control-label'>TEMPAT JADWAL</label>
-       <input name='tempatJADWAL' id='tempatJADWAL' type='text' class='form-control' style='font-size:larger;'>
-       </div>
-
-       
-
-       <div class='form-group label-floating has-info col-md-6'>
-       <label for='longtitudeJADWAL' class='control-label'>LONGTITUDE JADWAL</label>
-       <input name='longtitudeJADWAL' id='longtitudeJADWAL' type='number' class='form-control' style='font-size:larger;'>
-       </div>
-
-       
-
-       <div class='form-group label-floating has-info col-md-6'>
-       <label for='latitudeJADWAL' class='control-label'>LATITUDE JADWAL</label>
-       <input name='latitudeJADWAL' id='latitudeJADWAL' type='number' class='form-control' style='font-size:larger;'>
-       </div>
-
-       
-
-       <div class='form-group label-floating has-info col-md-6'>
-       <label for='waktuJADWAL' class='control-label'>WAKTU JADWAL</label>
-       <input name='waktuJADWAL' id='waktuJADWAL' type='datetime' class='form-control' style='font-size:larger;'>
-       </div>
-
-       
-
-       <div class='form-group label-floating has-info col-md-6'>
-       <label for='statusJADWAL' class='control-label'>STATUS JADWAL</label>
-       <select name="statusJADWAL" id="statusJADWAL" class="form-control">
-          <option value="" disabled selected>--Pilih status--</option>
-          <option value="public">Public</option>
-          <option value="invit">Invit</option>
-       </select>
-       <!-- <input name='statusJADWAL' id='statusJADWAL' type='text' class='form-control' style='font-size:larger;'> -->
-       </div>
-
-       
-              </div>
-
-              <div class='pull-right'>
-                 <a class='save btn btn-primary' style='background-color:green;color:white;'>SAVE</a>
-              </div>
-           </div>
-          {{/if}}
-          </div>
-         
+                  <div class='pull-right'>
+                     <a class='save btn btn-primary' style='background-color:green;color:white;'>SAVE</a>
+                  </div>
+               </div>
+            {{/if}}
+            </div>
+         </section>
          {{#if isDeleting}}
          {{>formDeleting}}
-        {{/if}}
-       </div>
-    </template>
+         {{/if}}
+      </div>
+      <footer class="page-footer blue lighten-2">
+         <div class="container">
+            <div class="row">
+               <div class="col l6 s12">
+                  <h5 class="white-text">Footer Content</h5>
+                  <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+               </div>
+               <div class="col l4 offset-l2 s12">
+                  <h5 class="white-text">Links</h5>
+                  <ul>
+                     <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                     <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                     <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                     <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+         <div class="footer-copyright blue lighten-1">
+            <div class="container">
+            © 2019 Copyright Text
+               <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+         </div>
+      </footer>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+   </template>
 
     

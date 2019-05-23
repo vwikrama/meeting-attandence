@@ -113,3 +113,9 @@ Router.route('/wo', function () {
        this.render('user');
     });
     
+
+    Router.route('/absen', function () {
+        Session.set('sURLMenu', 'absen');
+       this.render('absen');
+       Session.get('absensi');
+    });

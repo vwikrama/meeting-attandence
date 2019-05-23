@@ -171,3 +171,4 @@ publishData('jadwal', JADWAL, {}, {});
 publishData('team', TEAM, {}, {});
 publishData('jadwal', JADWAL, {}, {});
 publishData('user', USER, {}, {});
+publishData('absen', ABSEN, {}, {});

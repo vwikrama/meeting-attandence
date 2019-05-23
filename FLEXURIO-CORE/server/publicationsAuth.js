@@ -285,3 +285,20 @@ MESSAGEMEMBER.allow({
        }
     });
     
+
+    ABSEN.allow({
+       'insert': function (userId, doc) {
+          return true;
+       },
+       'remove': function (userId, doc) {
+           if (Roles.userIsInRole(userId, ['root', 'administrator'])) {
+               return true;
+           } else {
+               return false;
+           }
+       },
+       'update': function (userId, doc, fieldNames, modifier) {
+          return true;
+       }
+    });
+    

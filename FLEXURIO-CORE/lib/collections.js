@@ -24,3 +24,4 @@ TEAM = new Mongo.Collection('team');
  
 
 USER = new Mongo.Collection('user'); 
+ABSEN = new Mongo.Collection('absen'); 

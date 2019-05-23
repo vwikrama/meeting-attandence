@@ -1,39 +1,40 @@
 
           /**
-          * Generated from flexurio at Sel Mei 14 13:34:56 WIB 2019
-          * By muhamad at Linux muhamad-X455YA 4.15.0-47-generic #50-Ubuntu SMP Wed Mar 13 10:44:52 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+          * Generated from flexurio at Mon May 20 13:21:18 WIB 2019
+          * By restu at Linux mozart-inspiron-n4050 4.15.0-47-generic #50-Ubuntu SMP Wed Mar 13 10:44:52 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
           */
 
       import { Template } from 'meteor/templating';
       import { Session } from 'meteor/session';
-      import './jadwal.html';
+      import './absen.html';
 
-      Template.jadwal.created = function () {
+      Template.absen.created = function () {
          Session.set('limit', 50);
          Session.set('oFILTERS', {});
          Session.set('oOPTIONS', {});
          Session.set('textSearch', '');
-         Session.set('namaHeader', 'DATA JADWAL');
+         Session.set('namaHeader', 'DATA ABSEN');
          Session.set('dataDelete', '');
          Session.set('isCreating', false);
          Session.set('isDeleting', false);
+         if(!adaDATA(Session.get('absensi'))){
+            Router.go('jadwal');
+         }
 
          this.autorun(function () {
-                subscribtion('jadwal', Session.get('oFILTERS'), Session.get('oOPTIONS'), Session.get('limit'));
-                subscribtion('team',{aktifYN: 1},{},0);
-               });
+            subscribtion('anggota', {aktifYN:1}, {}, 0)
+            subscribtion('absen', Session.get('oFILTERS'), Session.get('oOPTIONS'), Session.get('limit'));
+         });
        };
 
-        Template.jadwal.onRendered(function () {
+        Template.absen.onRendered(function () {
             ScrollHandler();
         });
 
-        Template.jadwal.helpers({
-
-            teamsa: function(){
-               return TEAM.find().fetch();
+        Template.absen.helpers({
+            anggota:function(){
+               return ANGGOTA.find().fetch();
             },
-
             isLockMenu: function () {
                 return isLockMenu();
             },
@@ -66,7 +67,7 @@
          isCreating: function() {
             return Session.get('isCreating');
          },
-         jadwals: function() {
+         absens: function() {
             let textSearch = '';
             if(adaDATA(Session.get('textSearch'))) {
                textSearch = Session.get('textSearch').replace('#', '').trim();
@@ -78,37 +79,28 @@
             }
 
             let oFILTERS = {
+               Jadawl:Session.get('absensi'),
                aktifYN: 1,
                $or: [
                
-         {topikmeeting: { $regex : new RegExp(textSearch, 'i') }},
+         {nama: { $regex : new RegExp(textSearch, 'i') }},
          
-         {image: { $regex : new RegExp(textSearch, 'i') }},
-
-         {team: { $regex : new RegExp(textSearch, 'i') }},
+         {jabatan: { $regex : new RegExp(textSearch, 'i') }},
          
-         {tempat: { $regex : new RegExp(textSearch, 'i') }},
-         
-         {longtitude: { $regex : new RegExp(textSearch, 'i') }},
-         
-         {latitude: { $regex : new RegExp(textSearch, 'i') }},
-         
-         {waktu: { $regex : new RegExp(textSearch, 'i') }},
-         
-         {status: { $regex : new RegExp(textSearch, 'i') }},
+         {keterangan: { $regex : new RegExp(textSearch, 'i') }},
          
                {_id: { $regex : new RegExp(textSearch, 'i') }},
                ]
             }
 
-            return JADWAL.find(
+            return ABSEN.find(
                 oFILTERS,
                 oOPTIONS
             );
          }
       });
 
-      Template.jadwal.events({
+      Template.absen.events({
          'click a.cancel': function(e, tpl){
             e.preventDefault();
             Session.set('isCreating', false);
@@ -119,7 +111,7 @@
 
          'click a.deleteDataOK': function(e, tpl){
             e.preventDefault();
-            deleteJADWAL();
+            deleteABSEN();
             FlashMessages.sendWarning('Attention, ' + Session.get('dataDelete') + ' successfully DELETE !');
             Session.set('isDeleting', false);
          },
@@ -128,7 +120,7 @@
             Scroll2Top();
 
             Session.set('isDeleting', true);
-            Session.set('dataDelete', Session.get('namaHeader').toLowerCase() + ' ' + this.namaJADWAL);
+            Session.set('dataDelete', Session.get('namaHeader').toLowerCase() + ' ' + this.namaABSEN);
             Session.set('idDeleting', this._id);
          },
 
@@ -138,23 +130,15 @@
 
             Session.set('isCreating', true);
          },
-         'keyup #namaJADWAL': function (e, tpl) {
+         'keyup #namaABSEN': function (e, tpl) {
             e.preventDefault();
             if (e.keyCode == 13) {
-               insertJADWAL(tpl);
+               insertABSEN(tpl);
             }
          },
          'click a.save': function(e, tpl){
             e.preventDefault();
-            var x = document.querySelector('input[name="image"]').files[0]
-            getBase64(x, function (rest,roolback){
-             if(x =1){
-               insertJADWAL(tpl,roolback);
-             }else{
-
-             }
-             
-            });
+            insertABSEN(tpl);
          },
 
          'click a.editData': function(e, tpl){
@@ -164,73 +148,49 @@
             Session.set('idEditing', this._id);
             Session.set('isEditing', true);
          },
-         'keyup #namaEditJADWAL': function (e, tpl) {
+         'keyup #namaEditABSEN': function (e, tpl) {
             e.preventDefault();
             if (e.keyCode == 13) {
-               updateJADWAL(tpl);
+               updateABSEN(tpl);
             }
          },
          'click a.saveEDIT': function(e, tpl){
             e.preventDefault();
-            updateJADWAL(tpl);
+            updateABSEN(tpl);
          },
          'submit form.form-comments': function (e, tpl) {
             e.preventDefault();
-            flxcomments(e,tpl,JADWAL);
-        },
-        'click a.absen':function(e,tpl){
-           e.preventDefault();
-           Session.set('absensi',this._id);
-           Router.go('absen');
-        },
+            flxcomments(e,tpl,ABSEN);
+        }
+
       });
 
 
-      insertJADWAL = function (tpl,roolback) {
+      insertABSEN = function (tpl) {
 
+         let namaABSEN = tpl.$('select[name="namaABSEN"]').val();
          
-         let topikmeetingJADWAL = tpl.$('input[name="topikmeetingJADWAL"]').val();
-
-         let image = roolback;
+         let jabatanABSEN = tpl.$('input[name="jabatanABSEN"]').val();
          
-         let teamJADWAL = tpl.$('select[name="teamJADWAL"]').val();
-         
-         let tempatJADWAL = tpl.$('input[name="tempatJADWAL"]').val();
-         
-         let longtitudeJADWAL = tpl.$('input[name="longtitudeJADWAL"]').val();
-         
-         let latitudeJADWAL = tpl.$('input[name="latitudeJADWAL"]').val();
-         
-         let waktuJADWAL = tpl.$('input[name="waktuJADWAL"]').val();
-         
-         let statusJADWAL = tpl.$('select[name="statusJADWAL"]').val();
+         let keteranganABSEN = tpl.$('input[name="keteranganABSEN"]').val();
          
 
-         if(!adaDATA(topikmeetingJADWAL) | !adaDATA(image) | !adaDATA(teamJADWAL) | !adaDATA(tempatJADWAL) | !adaDATA(longtitudeJADWAL) | !adaDATA(latitudeJADWAL) | !adaDATA(waktuJADWAL) | !adaDATA(statusJADWAL) ) {
+         if(!adaDATA(namaABSEN) | !adaDATA(jabatanABSEN) | !adaDATA(keteranganABSEN) ) {
             FlashMessages.sendWarning('Please complete all of the data to be . . .');
             return;
          }
 
-         JADWAL.insert(
+         ABSEN.insert(
          {
             
-         topikmeeting: topikmeetingJADWAL,
-
-         image: image,
+         nama: namaABSEN,
          
-         team: teamJADWAL,
+         jabatan: jabatanABSEN,
          
-         tempat: tempatJADWAL,
-         
-         longtitude: longtitudeJADWAL,
-         
-         latitude: latitudeJADWAL,
-         
-         waktu: waktuJADWAL,
-         
-         status: statusJADWAL,
+         keterangan: keteranganABSEN,
          
             aktifYN: 1,
+            Jadawl:Session.get('absensi'),
             createByID: UserID(),
             createBy:UserName(),
             createAt: new Date()
@@ -247,45 +207,29 @@
       };
 
 
-      updateJADWAL = function (tpl) {
+      updateABSEN = function (tpl) {
 
          
-         let topikmeetingEditJADWAL = tpl.$('input[name="topikmeetingEditJADWAL"]').val();
+         let namaEditABSEN = tpl.$('input[name="namaEditABSEN"]').val();
          
-         let teamEditJADWAL = tpl.$('select[name="teamEditJADWAL"]').val();
+         let jabatanEditABSEN = tpl.$('input[name="jabatanEditABSEN"]').val();
          
-         let tempatEditJADWAL = tpl.$('input[name="tempatEditJADWAL"]').val();
-         
-         let longtitudeEditJADWAL = tpl.$('input[name="longtitudeEditJADWAL"]').val();
-         
-         let latitudeEditJADWAL = tpl.$('input[name="latitudeEditJADWAL"]').val();
-         
-         let waktuEditJADWAL = tpl.$('input[name="waktuEditJADWAL"]').val();
-         
-         let statusEditJADWAL = tpl.$('select[name="statusEditJADWAL"]').val();
+         let keteranganEditABSEN = tpl.$('input[name="keteranganEditABSEN"]').val();
          
 
-         if(!adaDATA(topikmeetingEditJADWAL) | !adaDATA(teamEditJADWAL) | !adaDATA(tempatEditJADWAL) | !adaDATA(longtitudeEditJADWAL) | !adaDATA(latitudeEditJADWAL) | !adaDATA(waktuEditJADWAL) | !adaDATA(statusEditJADWAL) ) {
+         if(!adaDATA(namaEditABSEN) | !adaDATA(jabatanEditABSEN) | !adaDATA(keteranganEditABSEN) ) {
             FlashMessages.sendWarning('Please complete all of the data to be . . .');
             return;
          }
 
-         JADWAL.update({_id:Session.get('idEditing')},
+         ABSEN.update({_id:Session.get('idEditing')},
          { $set:{
             
-         topikmeeting: topikmeetingEditJADWAL,
+         nama: namaEditABSEN,
          
-         team: teamEditJADWAL,
+         jabatan: jabatanEditABSEN,
          
-         tempat: tempatEditJADWAL,
-         
-         longtitude: longtitudeEditJADWAL,
-         
-         latitude: latitudeEditJADWAL,
-         
-         waktu: waktuEditJADWAL,
-         
-         status: statusEditJADWAL,
+         keterangan: keteranganEditABSEN,
          
             updateByID: UserID(),
             updateBy:UserName(),
@@ -304,14 +248,14 @@
       );
    };
 
-   deleteJADWAL = function () {
+   deleteABSEN = function () {
 
       if(!adaDATA(Session.get('idDeleting'))) {
          FlashMessages.sendWarning('Please select data that you want to remove . . .');
          return;
       }
 
-      JADWAL.update({_id:Session.get('idDeleting')},
+      ABSEN.update({_id:Session.get('idDeleting')},
           { $set:{
              aktifYN: 0,
              deleteByID: UserID(),
@@ -329,6 +273,3 @@
        }
        );
     };
-
-
-    

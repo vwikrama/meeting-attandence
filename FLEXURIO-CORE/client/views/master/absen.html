@@ -1,0 +1,98 @@
+
+   <!-- Generated from flexurio at Mon May 20 13:21:18 WIB 2019 By restu at Linux mozart-inspiron-n4050 4.15.0-47-generic #50-Ubuntu SMP Wed Mar 13 10:44:52 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux -->
+
+   <template name='absen'>
+      <div class='container-fluid app'>
+         {{>utama}}
+         {{>menuSearch}}
+         {{#if isActionADD}}
+            {{>menuAdd}}
+         {{/if}}
+
+         <div class='row main {{isLockMenu}} animasiAtas'>
+
+            <!-- HEADER LISTVIEW -->
+            <div class='list-group panel panel-default headerApp'>
+               {{>headerListview}}
+               <table class="centered striped responsive-table">
+                  <thead>
+                     <tr>
+                        <th>Nama</th>
+                        <th>Status</th>
+                        <th>Keterangan</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {{#each absens}}
+                     <tr>
+                        <td>{{nama}}</td>
+                        <td>{{jabatan}}</td>
+                        <td>{{keterangan}}</td>
+                        {{#if isEditing}}
+                        {{>blockModals}}
+                           <div class='container animasiAtas' style='position:fixed;top:10%;left:10%;width:80%;z-index:10001;'>
+                              <div class='col-md-12' style='height:auto;max-height:{{sTinggiPopUp}}px;overflow-y:scroll;'>
+                                 <div class='form-group label-floating has-info col-md-6'>
+                                    <label for='namaEditABSEN' class='control-label'>NAMA ABSEN</label>
+                                    <input name='namaEditABSEN' id='namaEditABSEN' type='text' class='form-control' style='font-size:larger;' value='{{nama}}'>
+                                 </div>
+                                 <div class='form-group label-floating has-info col-md-6'>
+                                    <label for='jabatanEditABSEN' class='control-label'>JABATAN ABSEN</label>
+                                    <input name='jabatanEditABSEN' id='jabatanEditABSEN' type='text' class='form-control' style='font-size:larger;' value='{{jabatan}}'>
+                                 </div>
+                                 <div class='form-group label-floating has-info col-md-6'>
+                                    <label for='keteranganEditABSEN' class='control-label'>KETERANGAN ABSEN</label>
+                                    <input name='keteranganEditABSEN' id='keteranganEditABSEN' type='text' class='form-control' style='font-size:larger;' value='{{keterangan}}'>
+                                 </div>
+                              </div>
+
+                              <div class='pull-right'>
+                                 <a class='saveEDIT btn btn-primary' style='background-color:green;color:white;'>SAVE</a>
+                              </div>
+                           </div>
+                        {{/if}}
+                     </tr>
+                     {{/each}}
+                  </tbody>
+               </table>
+            </div>
+            {{>menuLoadMore}}
+         </div>
+
+         {{#if isCreating}}
+            {{>blockModals}}
+               <div class='container animasiAtas' style='position:fixed;top:10%;left:10%;width:80%;z-index:10001;'>
+                  <div class='col-md-12' style='height:auto;max-height:{{sTinggiPopUp}}px;overflow-y:scroll;'>
+                     <div class='form-group label-floating has-info col-md-6'>
+                        <label for='namaABSEN' class='control-label'>NAMA ABSEN</label>
+                        <select name="namaABSEN" id="namaABSEN" class='form-control'>
+                           <option value="">pilih</option>
+                           {{#each anggota}}
+                           <option value="{{nama}}">{{nama}}</option>
+                           {{/each}}
+                        </select>
+                        <!-- <input name='namaABSEN' id='namaABSEN' type='text' class='form-control' style='font-size:larger;'> -->
+                     </div>
+                     <div class='form-group label-floating has-info col-md-6'>
+                        <label for='jabatanABSEN' class='control-label'>JABATAN ABSEN</label>
+                        <input name='jabatanABSEN' id='jabatanABSEN' type='text' class='form-control' style='font-size:larger;'>
+                     </div>
+                     <div class='form-group label-floating has-info col-md-6'>
+                        <label for='keteranganABSEN' class='control-label'>KETERANGAN ABSEN</label>
+                        <input name='keteranganABSEN' id='keteranganABSEN' type='text' class='form-control' style='font-size:larger;'>
+                     </div>
+                  </div>
+
+                  <div class='pull-right'>
+                     <a class='save btn btn-primary' style='background-color:green;color:white;'>SAVE</a>
+                  </div>
+               </div>
+            {{/if}}
+
+         {{#if isDeleting}}
+            {{>formDeleting}}
+         {{/if}}
+      </div>
+   </template>
+
+    
