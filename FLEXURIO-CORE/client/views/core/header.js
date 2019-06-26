@@ -43,6 +43,7 @@ Template.header.helpers({
         return sHeaderBackground;
     }
 });
+
 Template.formDeleting.onRendered(function(){
     $('#modal_formDeleting').modal()
 });

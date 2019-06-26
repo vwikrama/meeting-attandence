@@ -119,3 +119,8 @@ Router.route('/wo', function () {
        this.render('absen');
        Session.get('absensi');
     });
+
+    Router.route('/laporan', function () {
+        Session.set('sURLMenu', 'absen');
+       this.render('laporan');
+    });

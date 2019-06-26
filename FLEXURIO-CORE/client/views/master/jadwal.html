@@ -6,6 +6,13 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
       <body>
          <style>
+         
+         #map{
+            height: 550px;
+            width: 100%;
+            border-bottom:4px solid #42a5f5;
+         }
+
          .card-image img{
             height: 100px;      
          }
@@ -18,7 +25,7 @@
          }
          </style>
       </body>
-                 
+      <div id="map"></div>
       <div class='container-fluid app'>
          {{>utama}}
          {{>menuSearch}}
@@ -28,8 +35,8 @@
          <section class="jadwal">
             <div class="row">
             {{#each jadwals}}
-               <div class="col s12 m4">
-                  <div class="card"> 
+               <div class="col s12 m3">
+                  <div class="card hoverable"> 
                      <div class="card-image waves-effect waves-block waves-light">
                         <img class="" src="{{image}}">
                      </div>
@@ -55,7 +62,7 @@
                            <br>
                            Latitude  :{{latitude}}
                            <br>
-                           Time  : {{waktu}}
+                           Date  : {{waktu}}
                            <br>
                            Status  : {{status}}
                         </p>
@@ -195,6 +202,70 @@
          </div>
       </footer>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+      <script>
+         var map,options;
+         function initMap() {
+            // map options
+            options ={
+               center:{ lat: -6.261493, lng:106.810600},
+               zoom: 10,
+               mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            // new map
+            
+            map = new google.maps.Map(document.getElementById('map'),options);
+            
+   
+            // for (var i = 0; i < JADWAL.length; i++){
+            //    var lat = latitude
+            //    var lng = longtitude
+            //    var marker = new google.maps.Marker({
+            //       position: new google.maps.LatLng (lat, lng),
+            //       map : map
+            //    })
+            // }l
+
+            // array of markers
+            // var markers = [
+            //    {
+            //       coords:{lat:-6.306470, lng:106.837970},
+            //       content:'<p>Lokasi Marker</p>'
+            //    },
+            //    {
+            //       coords:{lat:-6.242130, lng:106.801811},
+            //       content:'<p>Kebayoran</p>'
+            //    },
+            //    {
+            //       coords:{lat:-6.260580, lng:106.805801},
+            //       content:'<p>Lokasi Marker</p>'
+            //    }
+            // ];
+
+            // loop markers
+            //  for (var i=0; i < markers.length; i++){
+            //    // add marker
+            //    addMarker(markers[i]);
+            // } 
+            // function addMarker(props){
+            //    var marker = new google.maps.Marker({
+            //       position : props.coords,
+            //       map : map
+            //    });
+
+            //    if(props.content){
+            //       var infoWindow = new google.maps.InfoWindow({
+            //          content:props.content
+            //        });
+
+            //       marker.addListener('click',function(){
+            //          infoWindow.open(map,marker);
+            //       });
+            //    }
+            // }
+         }
+       </script>
+       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnzb8BZs0LPSXV8DlWesFwWHZkLN1lHcE&callback=initMap"
+       async defer></script>
    </template>
 
     

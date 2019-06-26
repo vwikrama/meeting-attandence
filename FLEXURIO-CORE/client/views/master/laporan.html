@@ -1,0 +1,36 @@
+<template name='laporan'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        {{>utama}}
+        {{>menuSearch}}
+        <br>
+        <br>
+    <div class="container">
+            <div class='list-group panel panel-default headerApp'>
+    <table class="striped">
+        <thead>
+            <tr>
+                <th>Name Group</th>
+                <th>Name Schedule</th>
+                <th>Member</th>
+                <th>Address</th>
+                <th>Date</th>
+               <th></th>
+            </tr>
+        </thead>
+        <tbody>
+                {{#each laporan}}
+            <tr>      
+                <td>{{team}}</td>
+                <td>{{topikmeeting}}</td>
+                <td><a href="">{{anggota}}</a></td>
+                <td>{{tempat}}</td>
+                <td>{{waktu}}</td>
+                     
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    </div>
+</div>
+
+</template>

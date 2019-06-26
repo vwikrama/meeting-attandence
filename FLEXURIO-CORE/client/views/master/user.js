@@ -116,8 +116,12 @@
             Scroll2Top();
 
             Session.set('isDeleting', true);
-            Session.set('dataDelete', Session.get('namaHeader').toLowerCase() + ' ' + this.namaUSER);
+            Session.set('dataDelete', Session.get('namaHeader').toLowerCase() + ' ' + this.nama);
             Session.set('idDeleting', this._id);
+
+            setTimeout(function(){
+               $('#modal_formDeleting').modal('open')
+            },300);
          },
 
          'click a.create': function(e, tpl){

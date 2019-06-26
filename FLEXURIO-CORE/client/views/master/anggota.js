@@ -24,6 +24,8 @@
             this.autorun(function () {
                    subscribtion('anggota', Session.get('oFILTERS'), Session.get('oOPTIONS'), Session.get('limit'));
                    subscribtion('team',{aktifYN : 1},{},0);
+                   subscribtion('user',{aktifYN : 1},{},0);
+
                   });
           };
    
@@ -32,6 +34,11 @@
            });
    
            Template.anggota.helpers({
+
+               user : function(){
+                  return USER.find().fetch()
+               },            
+
                isLockMenu: function () {
                    return isLockMenu();
                },
@@ -121,8 +128,12 @@
                Scroll2Top();
    
                Session.set('isDeleting', true);
-               Session.set('dataDelete', Session.get('namaHeader').toLowerCase() + ' ' + this.namaANGGOTA);
+               Session.set('dataDelete', Session.get('namaHeader').toLowerCase() + ' ' + this.nama);
                Session.set('idDeleting', this._id);
+
+               setTimeout(function(){
+                  $('#modal_formDeleting').modal('open')
+               },300);
             
             },
    
@@ -171,7 +182,7 @@
          insertANGGOTA = function (tpl) {
    
             
-            let namaANGGOTA = tpl.$('input[name="namaANGGOTA"]').val();
+            let namaANGGOTA = tpl.$('select[name="namaANGGOTA"]').val();
             
             let notlepANGGOTA = tpl.$('input[name="notlepANGGOTA"]').val();
             
@@ -217,7 +228,7 @@
          updateANGGOTA = function (tpl) {
    
             
-            let namaEditANGGOTA = tpl.$('input[name="namaEditANGGOTA"]').val();
+            let namaEditANGGOTA = tpl.$('select[name="namaEditANGGOTA"]').val();
             
             let notlepEditANGGOTA = tpl.$('input[name="notlepEditANGGOTA"]').val();
             

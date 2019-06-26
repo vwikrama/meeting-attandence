@@ -26,7 +26,7 @@
             }
          </style>
       </body>
-      <div class="jumbotronAnggota valign-wrapper"></div>
+      <!-- <div class="jumbotronAnggota valign-wrapper"></div> -->
       <section class="anggota">
          <div class="container-fluid app">
             <div class="list-group panel panel-default headerApp">
@@ -39,10 +39,10 @@
                <table class="responsive-table striped">
                   <thead>
                      <tr>
-                        <th>Nama</th>
-                        <th>No Telpon</th>
+                        <th>Name</th>
+                        <th>No Phone</th>
                         <th>Status</th>
-                        <th>Alamat</th>
+                        <th>Address</th>
                         <th>OPSI</th>
                      </tr>
                   </thead>
@@ -91,7 +91,12 @@
                            <div class='col-md-12' style='height:auto;max-height:{{sTinggiPopUp}}px;overflow-y:scroll;'>
                               <div class='form-group label-floating has-info col-md-6'>
                                  <label for='namaANGGOTA' class='control-label'>NAMA ANGGOTA</label>
-                                 <input name='namaANGGOTA' id='namaANGGOTA' type='text' class='form-control' style='font-size:larger;'>
+                                 <select name="namaANGGOTA" id="namaANGGOTA" class='form-control'>
+                                    <option value="pilih" selected disabled>Pilih</option>
+                                    {{#each user}}
+                                    <option value="{{nama}}">{{nama}}</option>
+                                    {{/each}}
+                                 </select>
                               </div>
                               <div class='form-group label-floating has-info col-md-6'>
                                  <label for='notlepANGGOTA' class='control-label'>NOTLEP ANGGOTA</label>
@@ -128,7 +133,7 @@
       <footer class="page-footer blue lighten-2">
          <div class="container">
             <div class="row">
-               <div class="col l6 s12">
+               <div class="col l4 s12">
                   <h5 class="white-text">Footer Content</h5>
                   <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
                </div>

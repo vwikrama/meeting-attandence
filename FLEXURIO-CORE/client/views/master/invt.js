@@ -22,8 +22,8 @@
             }
    
             this.autorun(function () {
-               // subscribtion('anggota', Session.get('oFILTERS'), Session.get('oOPTIONS'), Session.get('limit'));
                subscribtion('team',{aktifYN : 1},{},0);
+               subscribtion('user',{aktifYN : 1},{},0);
             });
           };
            
@@ -34,6 +34,10 @@
            });
    
            Template.invt.helpers({
+
+            users: function(){
+               return USER.find().fetch()
+            },
                
             isCreating: function() {
                return Session.get('isCreating');
@@ -78,6 +82,7 @@
             'click a.save': function(e, tpl){
                e.preventDefault();
                insertANGGOTA(tpl);
+               Router.go('anggota');
                
             },
    
@@ -87,7 +92,7 @@
          insertANGGOTA = function (tpl) {
    
             
-            let namaANGGOTA = tpl.$('input[name="namaANGGOTA"]').val();
+            let namaANGGOTA = tpl.$('select[name="namaANGGOTA"]').val();
             
             let notlepANGGOTA = tpl.$('input[name="notlepANGGOTA"]').val();
             

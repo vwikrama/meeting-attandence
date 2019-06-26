@@ -37,7 +37,12 @@
                         <div class="input-field col s6">
                            <label for="namaANGGOTA">Nama Anggota</label>
                            <br>
-                           <input type="text" id="namnaANGGOTA" class="validate" name="namaANGGOTA">
+                           <select name="namaANGGOTA" id="namnaANGGOTA" class='form-control'>
+                                <option value="Pilih" selected disabled>Pilih</option>
+                                {{#each users}}
+                                <option value="{{nama}}">{{nama}}</option>
+                                {{/each}}
+                           </select>
                         </div>
                         <div class="input-field col s6">
                             <select class="form-control" name="jabatanANGGOTA">
@@ -62,7 +67,7 @@
                         </div>
                     </div>
                 </div>
-                <a class="save waves-effect waves-light btn-large light-green right">Save</a>
+                <a  class="save waves-effect waves-light btn-large light-green right">Save</a>
             </div>
         </section> 
     </div>

@@ -26,6 +26,31 @@
 
         Template.jadwal.onRendered(function () {
             ScrollHandler();
+            setTimeout(function(){
+               var locations = 
+                  JADWAL.find().fetch().map(function(data){
+                     return [data.team,parseFloat(data.latitude),parseFloat(data.longtitude)]
+            
+                  })
+               
+               var infowindow = new google.maps.InfoWindow;
+   
+               var marke,i;
+   
+               for( i = 0; i < locations.length; i++){
+                  marker = new google.maps.Marker({
+                     position : new google.maps.LatLng(locations[i][1],locations[i][2]),
+                     map : map
+                  });
+   
+                  google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                     return function() {
+                        infowindow.setContent(locations[i][0]);
+                        infowindow.open(map, marker);
+                     }
+                  })(marker, i));
+               }
+            },500)
         });
 
         Template.jadwal.helpers({
@@ -128,8 +153,12 @@
             Scroll2Top();
 
             Session.set('isDeleting', true);
-            Session.set('dataDelete', Session.get('namaHeader').toLowerCase() + ' ' + this.namaJADWAL);
+            Session.set('dataDelete', Session.get('namaHeader').toLowerCase() + ' ' + this.topikmeeting);
             Session.set('idDeleting', this._id);
+
+            setTimeout(function(){
+               $('#modal_formDeleting').modal('open')
+            },300);
          },
 
          'click a.create': function(e, tpl){

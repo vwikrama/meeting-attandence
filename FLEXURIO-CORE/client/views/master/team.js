@@ -108,10 +108,13 @@
          'click a.deleteData': function(e, tpl){
             e.preventDefault();
             Scroll2Top();
-
             Session.set('isDeleting', true);
-            Session.set('dataDelete', Session.get('namaHeader').toLowerCase() + ' ' + this.namaTEAM);
+            Session.set('dataDelete', Session.get('namaHeader').toLowerCase() + ' ' + this.nama_kelompok);
             Session.set('idDeleting', this._id);
+
+            setTimeout(function(){
+               $('#modal_formDeleting').modal('open')
+            },300);
          },
 
          'click a.create': function(e, tpl){

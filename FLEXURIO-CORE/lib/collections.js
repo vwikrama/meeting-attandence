@@ -9,7 +9,6 @@ MENUAUTH = new Mongo.Collection('menuAuth');
 MEMBER = Meteor.users;
 MESSAGE = new Mongo.Collection('message');
 MESSAGEMEMBER = new Mongo.Collection('messageMember');
-
 ACTIVITYLOGS = new Mongo.Collection('activitylogs');
 PROFILEDATA = new Mongo.Collection('profileData');
 WOTIPE = new Mongo.Collection('woTipe');
@@ -21,7 +20,5 @@ ANGGOTA = new Mongo.Collection('anggota');
 KELOMPOK = new Mongo.Collection('kelompok'); 
 JADWAL = new Mongo.Collection('jadwal'); 
 TEAM = new Mongo.Collection('team'); 
- 
-
 USER = new Mongo.Collection('user'); 
 ABSEN = new Mongo.Collection('absen'); 
